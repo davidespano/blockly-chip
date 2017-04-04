@@ -44,7 +44,11 @@
     <span id="Variables_pathUp">Se c'&egrave; strada in alto</span>
     <span id="Variables_pathDown">Se c'&egrave; strada in basso</span>
     <span id="Variables_pathLeft">Se c'&egrave; strada a sinistra</span>
-    <span id="Variables_pathRight">Se c'&egrave; strada a destra</span>    
+    <span id="Variables_pathRight">Se c'&egrave; strada a destra</span>
+    <span id="Variables_pathForward">Se c'&egrave; strada avanti</span>
+    <span id="Variables_pathBack">Se c'&egrave; strada dietro</span>
+    <span id="Variables_rotateLeft">Gira verso sinistra</span>
+    <span id="Variables_rotateRight">Gira verso destra</span>    
 </div>
 {/template}
 
@@ -71,7 +75,7 @@
         </h1>
       </td>
       <td style="width: 50px; text-align: center; vertical-align: middle;"><img src="variables/garbage-mini.png" alt="garbage"/></td>
-      <td id="min-garbage" style="width: 200px; text-align: left; vertical-align: middle;">X %0</td>
+      <td id="min-garbage" style="width: 200px; text-align: left; vertical-align: middle;">x %0</td>
       <td class="farSide">
         <select id="languageMenu" style="display:none"></select>
         &nbsp;
@@ -265,7 +269,8 @@
     {if $ij.level > 3}
       <block type="maze_forever"></block>
       {if $ij.level == 6}
-        <block type="maze_if"><field name="DIR">isPathLeft</field></block>
+        <block type="maze_rotate"><field name="DIR">rotateLeft</field></block>
+        <block type="maze_if"><field name="DIR">isPathForward</field></block>
       {elseif $ij.level > 6}
         <block type="maze_if"></block>
         {if $ij.level > 8}

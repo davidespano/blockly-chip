@@ -50,10 +50,10 @@ BlocklyInterface.nextLevel = function() {
 };
 
 Variables.MAX_BLOCKS = [undefined, // Level 0.
-    7, Infinity, 14, 9, 14, 5, 5, 10, 8, 10][BlocklyGames.LEVEL];
+    7, Infinity, 14, 9, 13, Infinity, 18, 10, 8, 10][BlocklyGames.LEVEL];
 
 Variables.MIN_GARBAGE = [undefined, // Level 0.
-	2, 3, 3, 5, 9, 4, 6, 4, 5, 5][BlocklyGames.LEVEL]
+	2, 3, 3, 5, 8, 5, 5, 4, 5, 5][BlocklyGames.LEVEL]
 // Crash type constants.
 Variables.CRASH_STOP = 1;
 Variables.CRASH_SPIN = 2;
@@ -183,17 +183,27 @@ Variables.map = [
   [0, 1, 0, 0, 1, 0, 4, 0],
   [0, 1, 0, 1, 1, 0, 4, 0],
   [0, 1, 0, 1, 0, 0, 4, 0],
-  [0, 3, 4, 4, 4, 4, 1, 0]],
+  [0, 3, 4, 4, 4, 4, 1, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0]],
 // Level 6.
  [[0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 2, 1, 1, 4, 1, 1, 0],
-  [0, 0, 0, 1, 0, 0, 1, 0],
-  [0, 4, 1, 1, 1, 1, 4, 1],
-  [0, 0, 1, 1, 0, 1, 0, 1],
-  [0, 0, 1, 4, 0, 1, 0, 1],
-  [0, 0, 0, 1, 1, 3, 1, 1],
-  [0, 0, 0, 0, 0, 0, 0, 0]],
+  [0, 2, 1, 4, 0, 0, 0, 0],
+  [0, 0, 0, 1, 0, 0, 0, 0],
+  [0, 0, 0, 4, 1, 4, 0, 0],
+  [3, 1, 1, 0, 0, 1, 1, 1],
+  [0, 0, 4, 1, 1, 4, 0, 1],
+  [0, 0, 1, 0, 0, 1, 0, 1],
+  [0, 0, 0, 0, 0, 1, 1, 1]],
 // Level 7.
+ [[0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 2, 1, 4, 0, 0, 0, 0],
+  [0, 0, 0, 1, 0, 0, 0, 0],
+  [0, 0, 0, 4, 1, 4, 0, 0],
+  [3, 1, 1, 0, 0, 1, 1, 1],
+  [0, 0, 4, 1, 1, 4, 0, 1],
+  [0, 0, 1, 0, 0, 1, 0, 1],
+  [0, 0, 0, 0, 0, 1, 1, 1]],
+// Level 8.
  [[0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 3, 0],
   [0, 2, 1, 4, 1, 0, 1, 0],
@@ -202,7 +212,7 @@ Variables.map = [
   [0, 0, 1, 0, 1, 0, 1, 0],
   [0, 0, 4, 1, 4, 1, 1, 0],
   [0, 0, 0, 0, 0, 0, 0, 0]],
-// Level 8.
+// Level 9.
  [[0, 0, 0, 0, 0, 0, 0, 0],
   [0, 2, 1, 1, 1, 4, 0, 0],
   [0, 0, 0, 1, 0, 1, 0, 0],
@@ -210,15 +220,6 @@ Variables.map = [
   [0, 1, 0, 1, 0, 0, 0, 0],
   [0, 1, 0, 1, 0, 0, 0, 0],
   [0, 1, 1, 4, 1, 4, 3, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0]],
-// Level 9.
- [[0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 1, 1, 1, 1, 1, 0, 0],
-  [0, 0, 1, 0, 0, 0, 0, 0],
-  [3, 1, 1, 1, 1, 1, 1, 0],
-  [0, 1, 0, 1, 0, 1, 1, 0],
-  [1, 1, 1, 1, 1, 0, 1, 0],
-  [0, 1, 0, 1, 0, 2, 1, 0],
   [0, 0, 0, 0, 0, 0, 0, 0]],
 // Level 10.
  [[0, 0, 0, 0, 0, 0, 0, 0],
@@ -1046,6 +1047,16 @@ Variables.initInterpreter = function(interpreter, scope) {
   interpreter.setProperty(scope, 'moveBackward',
       interpreter.createNativeFunction(wrapper));
   wrapper = function(id) {
+    Variables.turn(Variables.constrainDirection4(Variables.pegmanD - 1), id.toString());
+  };
+  interpreter.setProperty(scope, 'rotateLeft',
+      interpreter.createNativeFunction(wrapper));
+  wrapper = function(id) {
+    Variables.turn(Variables.constrainDirection4(Variables.pegmanD + 1), id.toString());
+  };
+  interpreter.setProperty(scope, 'rotateRight',
+      interpreter.createNativeFunction(wrapper));
+  wrapper = function(id) {
     Variables.turn(Variables.DirectionType.WEST, id.toString());
   };
   interpreter.setProperty(scope, 'turnLeft',
@@ -1084,6 +1095,16 @@ Variables.initInterpreter = function(interpreter, scope) {
     return interpreter.createPrimitive(Variables.isPath(2, id.toString()));
   };
   interpreter.setProperty(scope, 'isPathDown',
+      interpreter.createNativeFunction(wrapper));
+  wrapper = function(id) {
+    return interpreter.createPrimitive(Variables.isPath(Variables.pegmanD, id.toString()));
+  };
+  interpreter.setProperty(scope, 'isPathForward',
+      interpreter.createNativeFunction(wrapper));
+  wrapper = function(id) {
+    return interpreter.createPrimitive((Variables.isPath(Variables.pegmanD + 2), id.toString()));
+  };
+  interpreter.setProperty(scope, 'isPathBack',
       interpreter.createNativeFunction(wrapper));
   wrapper = function() {
     return interpreter.createPrimitive(Variables.notDone());
@@ -1673,7 +1694,9 @@ Variables.isPath = function(direction, id) {
  * @return {boolean} True if not done, false if done.
  */
 Variables.notDone = function() {
-  return Variables.pegmanX != Variables.finish_.x || Variables.pegmanY != Variables.finish_.y;
+  return Variables.pegmanX != Variables.finish_.x || 
+	 Variables.pegmanY != Variables.finish_.y || 
+	 Variables.garbage < Variables.MIN_GARBAGE;
 };
 
 window.addEventListener('load', Variables.init);
