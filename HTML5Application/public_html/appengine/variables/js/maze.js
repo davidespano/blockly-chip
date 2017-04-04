@@ -871,6 +871,7 @@ Variables.hidePegmanMenu = function(e) {
   }
 };
 
+
 /**
  * Reset the maze to the start position and kill any pending animation tasks.
  * @param {boolean} first True if an opening animation is to be played.
@@ -886,7 +887,6 @@ Variables.reset = function(first) {
   Variables.pegmanX = Variables.start_.x;
   Variables.pegmanY = Variables.start_.y;
   Variables.garbage = 0;
-
   if (first) {
     Variables.pegmanD = Variables.startDirection + 1;
     document.getElementById('direction-dsp').innerHTML = Variables.DirectionName[Variables.pegmanD];
@@ -1001,8 +1001,19 @@ Variables.resetButtonClick = function(e) {
   var runButton = document.getElementById('runButton');
   runButton.style.display = 'block';
   document.getElementById('resetButton').style.display = 'none';
+  
+  // put garbage back again
+  for (var y = 0; y < Variables.ROWS; y++) {
+    for (var x = 0; x < Variables.COLS; x++) {
+        if(Variables.map[y][x] == Variables.SquareType.GARBAGE){
+  		var garbageMarker = document.getElementById('garbage_' + (Variables.map.length * y + x));
+		garbageMarker.style.display = 'inline';
+	}
+    }
+  }
   BlocklyGames.workspace.traceOn(false);
   Variables.reset(false);
+  document.getElementById('garbage-cnt').innerHTML = '' + Variables.garbage;
   Variables.levelHelp();
 };
 
@@ -1209,7 +1220,11 @@ Variables.animate = function() {
     case 'update_direction':
       Variables.scheduleVariableUpdate('direction-dsp', Variables.DirectionName[Variables.pegmanD]);
       break;
-      
+    case 'update_garbage':
+      Variables.scheduleVariableUpdate('garbage-cnt', action[2]);
+      Variables.scheduleFinish(false);
+      Variables.scheduleGarbageCollection('garbage_' + (action[4] * Variables.map.length + action[3]));
+      break;
   }
 
   Variables.pidList.push(setTimeout(Variables.animate, Variables.stepSpeed * 5));
@@ -1253,13 +1268,20 @@ Variables.updatePegSpin_ = function(e) {
 Variables.scheduleVariableUpdate = function(elementId, value){
    Variables.pidList.push(setTimeout(function(){
       var directionDsp = document.getElementById(elementId);
-      directionDsp.innerHTML = value;
+      directionDsp.innerHTML = '' + value;
       directionDsp.style.backgroundColor= 'gold';
    }, Variables.stepSpeed * 1));
    Variables.pidList.push(setTimeout(function(){
       var directionDsp = document.getElementById(elementId);
       directionDsp.style.backgroundColor = 'white';
    }, Variables.stepSpeed * 3));
+}
+
+Variables.scheduleGarbageCollection = function(elementId){
+   Variables.pidList.push(setTimeout(function(){
+      var bag = document.getElementById(elementId);
+      bag.style.display= 'none';
+   }, Variables.stepSpeed * 1));
 }
 
 /**
@@ -1506,7 +1528,7 @@ Variables.collect = function(id){
     }
     
     Variables.garbage++;
-    Variables.scheduleVariableUpdate('garbage-cnt', Variables.garbage);
+    Variables.log.push(['update_garbage', id, Variables.garbage, Variables.pegmanX, Variables.pegmanY]);
 }
 
 
