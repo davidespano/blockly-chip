@@ -50,8 +50,10 @@ BlocklyInterface.nextLevel = function() {
 };
 
 Variables.MAX_BLOCKS = [undefined, // Level 0.
-    Infinity, Infinity, 2, 5, 5, 5, 5, 10, 7, 10][BlocklyGames.LEVEL];
+    7, Infinity, 14, 9, 14, 5, 5, 10, 8, 10][BlocklyGames.LEVEL];
 
+Variables.MIN_GARBAGE = [undefined, // Level 0.
+	2, 3, 3, 5, 9, 4, 6, 4, 5, 5][BlocklyGames.LEVEL]
 // Crash type constants.
 Variables.CRASH_STOP = 1;
 Variables.CRASH_SPIN = 2;
@@ -138,81 +140,76 @@ Variables.map = [
 // Level 0.
  undefined,
 // Level 1.
- [[0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 2, 1, 4, 3, 0],
-  [0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0]],
+ [[0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 2, 1, 4, 4, 1, 3, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0]],
 // Level 2.
  [[0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 1, 3, 0, 0, 0],
-  [0, 0, 2, 1, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 2, 1, 4, 4, 1, 1, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0],
+  [0, 0, 0, 0, 0, 0, 4, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0],
+  [0, 0, 0, 0, 0, 0, 3, 0],
   [0, 0, 0, 0, 0, 0, 0, 0]],
 // Level 3.
  [[0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 2, 1, 1, 1, 1, 3, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 4, 1, 4, 1, 2, 0, 0],
+  [0, 1, 0, 0, 0, 1, 0, 0],
+  [0, 1, 0, 0, 0, 1, 0, 0],
+  [0, 1, 0, 0, 0, 4, 0, 0],
+  [0, 1, 0, 0, 0, 1, 0, 0],
+  [0, 3, 1, 4, 1, 4, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0]],
 // Level 4.
-/**
- * Note, the path continues past the start and the goal in both directions.
- * This is intentionally done so users see the maze is about getting from
- * the start to the goal and not necessarily about moving over every part of
- * the maze, 'mowing the lawn' as Neil calls it.
- */
- [[0, 0, 0, 0, 0, 0, 0, 1],
-  [0, 0, 0, 0, 0, 0, 1, 1],
-  [0, 0, 0, 0, 0, 3, 1, 0],
-  [0, 0, 0, 0, 1, 1, 0, 0],
-  [0, 0, 0, 1, 1, 0, 0, 0],
-  [0, 0, 1, 1, 0, 0, 0, 0],
-  [0, 2, 1, 0, 0, 0, 0, 0],
-  [1, 1, 0, 0, 0, 0, 0, 0]],
+ [[0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 3, 0],
+  [0, 0, 0, 0, 4, 1, 4, 0],
+  [0, 0, 0, 0, 1, 0, 0, 0],
+  [0, 0, 4, 1, 4, 0, 0, 0],
+  [0, 0, 1, 0, 0, 0, 0, 0],
+  [2, 1, 4, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0]],
 // Level 5.
  [[0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 3, 0, 0],
-  [0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 2, 1, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0]],
+  [0, 4, 1, 1, 1, 1, 2, 0],
+  [0, 1, 0, 1, 0, 0, 1, 0],
+  [0, 1, 1, 1, 1, 0, 4, 0],
+  [0, 1, 0, 0, 1, 0, 4, 0],
+  [0, 1, 0, 1, 1, 0, 4, 0],
+  [0, 1, 0, 1, 0, 0, 4, 0],
+  [0, 3, 4, 4, 4, 4, 1, 0]],
 // Level 6.
  [[0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 1, 1, 1, 1, 1, 0, 0],
-  [0, 1, 0, 0, 0, 1, 0, 0],
-  [0, 1, 1, 3, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 2, 1, 1, 1, 1, 0, 0],
+  [0, 2, 1, 1, 4, 1, 1, 0],
+  [0, 0, 0, 1, 0, 0, 1, 0],
+  [0, 4, 1, 1, 1, 1, 4, 1],
+  [0, 0, 1, 1, 0, 1, 0, 1],
+  [0, 0, 1, 4, 0, 1, 0, 1],
+  [0, 0, 0, 1, 1, 3, 1, 1],
   [0, 0, 0, 0, 0, 0, 0, 0]],
 // Level 7.
  [[0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 1, 1, 0],
-  [0, 2, 1, 1, 1, 1, 0, 0],
-  [0, 0, 0, 0, 0, 1, 1, 0],
-  [0, 1, 1, 3, 0, 1, 0, 0],
-  [0, 1, 0, 1, 0, 1, 0, 0],
-  [0, 1, 1, 1, 1, 1, 1, 0],
+  [0, 0, 0, 0, 0, 0, 3, 0],
+  [0, 2, 1, 4, 1, 0, 1, 0],
+  [0, 0, 0, 0, 1, 0, 4, 0],
+  [0, 0, 4, 1, 4, 0, 1, 0],
+  [0, 0, 1, 0, 1, 0, 1, 0],
+  [0, 0, 4, 1, 4, 1, 1, 0],
   [0, 0, 0, 0, 0, 0, 0, 0]],
 // Level 8.
  [[0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 1, 1, 1, 1, 0, 0, 0],
-  [0, 1, 0, 0, 1, 1, 0, 0],
-  [0, 1, 1, 1, 0, 1, 0, 0],
+  [0, 2, 1, 1, 1, 4, 0, 0],
   [0, 0, 0, 1, 0, 1, 0, 0],
-  [0, 2, 1, 1, 0, 3, 0, 0],
+  [0, 0, 0, 4, 1, 1, 0, 0],
+  [0, 1, 0, 1, 0, 0, 0, 0],
+  [0, 1, 0, 1, 0, 0, 0, 0],
+  [0, 1, 1, 4, 1, 4, 3, 0],
   [0, 0, 0, 0, 0, 0, 0, 0]],
 // Level 9.
  [[0, 0, 0, 0, 0, 0, 0, 0],
@@ -321,7 +318,6 @@ Variables.drawMap = function() {
   var svg = document.getElementById('svgVariables');
   var scale = Math.max(Variables.ROWS, Variables.COLS) * Variables.SQUARE_SIZE;
   svg.setAttribute('viewBox', '0 0 ' + scale + ' ' + scale);
-
   // Draw the outer square.
   var square = document.createElementNS(Blockly.SVG_NS, 'rect');
   square.setAttribute('width', Variables.MAZE_WIDTH);
@@ -434,7 +430,7 @@ Variables.drawMap = function() {
       		Variables.SKIN.garbage);
   	garbageMarker.setAttribute('height', 34);
   	garbageMarker.setAttribute('width', 34);
-	garbageMarker.setAttribute('x', x * Variables.SQUARE_SIZE);
+	garbageMarker.setAttribute('x', (x + 0.2 )* Variables.SQUARE_SIZE);
       	garbageMarker.setAttribute('y', y * Variables.SQUARE_SIZE);
   	svg.appendChild(garbageMarker);
       }
@@ -791,6 +787,8 @@ Variables.levelHelp = function(opt_event) {
       origin = toolbar[5].getSvgRoot();
     }
   }
+  // [davide] disabilito gli help in modo quick and dirty
+  content = undefined;
   if (content) {
     if (content.parentNode != document.getElementById('dialog')) {
       BlocklyDialogs.showDialog(content, origin, true, false, style, null);
@@ -890,6 +888,8 @@ Variables.reset = function(first) {
   if (first) {
     Variables.pegmanD = Variables.startDirection + 1;
     document.getElementById('direction-dsp').innerHTML = Variables.DirectionName[Variables.pegmanD];
+    var minGarbage = document.getElementById('min-garbage');
+    minGarbage.innerHTML = minGarbage.innerHTML.replace('%0', Variables.MIN_GARBAGE);
     Variables.scheduleFinish(false);
     Variables.pidList.push(setTimeout(function() {
       Variables.stepSpeed = 100;
@@ -1066,24 +1066,24 @@ Variables.initInterpreter = function(interpreter, scope) {
   interpreter.setProperty(scope, 'turnDown',
       interpreter.createNativeFunction(wrapper));
   wrapper = function(id) {
-    return interpreter.createPrimitive(Variables.isPath(0, id.toString()));
-  };
-  interpreter.setProperty(scope, 'isPathForward',
-      interpreter.createNativeFunction(wrapper));
-  wrapper = function(id) {
     return interpreter.createPrimitive(Variables.isPath(1, id.toString()));
   };
   interpreter.setProperty(scope, 'isPathRight',
       interpreter.createNativeFunction(wrapper));
   wrapper = function(id) {
-    return interpreter.createPrimitive(Variables.isPath(2, id.toString()));
+    return interpreter.createPrimitive(Variables.isPath(0, id.toString()));
   };
-  interpreter.setProperty(scope, 'isPathBackward',
+  interpreter.setProperty(scope, 'isPathUp',
       interpreter.createNativeFunction(wrapper));
   wrapper = function(id) {
     return interpreter.createPrimitive(Variables.isPath(3, id.toString()));
   };
   interpreter.setProperty(scope, 'isPathLeft',
+      interpreter.createNativeFunction(wrapper));
+  wrapper = function(id) {
+    return interpreter.createPrimitive(Variables.isPath(2, id.toString()));
+  };
+  interpreter.setProperty(scope, 'isPathDown',
       interpreter.createNativeFunction(wrapper));
   wrapper = function() {
     return interpreter.createPrimitive(Variables.notDone());
@@ -1130,6 +1130,8 @@ Variables.execute = function() {
       Variables.result = Variables.ResultType.TIMEOUT;
     } else if (e === false) {
       Variables.result = Variables.ResultType.ERROR;
+    } else if(e === true){
+      Variables.result = Variables.ResultType.SUCCESS;
     } else {
       // Syntax error, can't happen.
       Variables.result = Variables.ResultType.ERROR;
@@ -1218,12 +1220,25 @@ Variables.animate = function() {
       setTimeout(BlocklyDialogs.congratulations, 1000);
       break;
     case 'update_direction':
-      Variables.scheduleVariableUpdate('direction-dsp', Variables.DirectionName[Variables.pegmanD]);
+      Variables.scheduleVariableUpdate('direction-dsp', Variables.DirectionName[action[2]]);
       break;
     case 'update_garbage':
       Variables.scheduleVariableUpdate('garbage-cnt', action[2]);
       Variables.scheduleFinish(false);
       Variables.scheduleGarbageCollection('garbage_' + (action[4] * Variables.map.length + action[3]));
+      break;
+    case 'showlowgarbage':
+      var content = document.getElementById('dialogLowGarbage');
+      content.innerHTML = content.innerHTML.replace("%0", Variables.MIN_GARBAGE);
+      var style = {
+        'width': '30%',
+        'left': '35%',
+        'top': '12em'
+      };
+      BlocklyDialogs.showDialog(content, null, true, true, style,
+          BlocklyDialogs.stopDialogKeyDown);
+      BlocklyDialogs.startDialogKeyDown();
+      setTimeout(BlocklyDialogs.abortOffer, 5 * 60 * 1000);
       break;
   }
 
@@ -1542,10 +1557,29 @@ Variables.collect = function(id){
  * @throws {false} If Pegman collides with a wall.
  */
 Variables.move = function(direction, id) {
-  if (!Variables.isPath(direction, null)) {
-    Variables.log.push(['fail_' + (direction ? 'backward' : 'forward'), id]);
-    throw false;
+  var error = 0;
+  
+
+  if(Variables.map[Variables.pegmanY][Variables.pegmanX] === Variables.SquareType.FINISH){
+      if(Variables.garbage < Variables.MIN_GARBAGE){
+          error = true;
+          Variables.log.push(['fail_' + (direction ? 'backward' : 'forward'), id]);
+          Variables.log.push(['showlowgarbage', id]);
+      }else{
+          Variables.log.push(['finish', id]);
+          throw true;
+      }
+  }else{
+    if (!Variables.isPath(Variables.pegmanD, null)) {
+       error = true;
+       Variables.log.push(['fail_' + (direction ? 'backward' : 'forward'), id]);
+    }
   }
+
+  if(error){
+     throw false;
+  }
+  
   // If moving backward, flip the effective direction.
   var effectiveDirection = Variables.pegmanD + direction;
   var command;
@@ -1568,6 +1602,7 @@ Variables.move = function(direction, id) {
       break;
   }
   Variables.log.push([command, id]);
+  
 };
 
 /**
@@ -1580,18 +1615,18 @@ Variables.turn = function(direction, id) {
   if (steps < 0) {
     for(var i = 0; i < -steps; i++){
     	// Right turn (clockwise).
-    	Variables.pegmanD--;
-    	Variables.log.push(['right', id]);
+    	//Variables.pegmanD--;
+    	Variables.log.push(['right', id,]);
     }
   } else {
      for(var i = 0; i < steps; i++){
     	// Left turn (counterclockwise).
-    	Variables.pegmanD++;
+    	//Variables.pegmanD++;
     	Variables.log.push(['left', id]);
      }
   }
-  Variables.pegmanD = Variables.constrainDirection4(Variables.pegmanD);
-  Variables.log.push(['update_direction', id]);
+  Variables.pegmanD = direction;
+  Variables.log.push(['update_direction', id, direction]);
 };
 
 /**
@@ -1603,10 +1638,11 @@ Variables.turn = function(direction, id) {
  * @return {boolean} True if there is a path.
  */
 Variables.isPath = function(direction, id) {
-  var effectiveDirection = Variables.pegmanD + direction;
+  //var effectiveDirection = Variables.pegmanD + direction;
+  var effectiveDirection = direction;
   var square;
   var command;
-  switch (Variables.constrainDirection4(effectiveDirection)) {
+  switch (effectiveDirection) {
     case Variables.DirectionType.NORTH:
       square = Variables.map[Variables.pegmanY - 1] &&
           Variables.map[Variables.pegmanY - 1][Variables.pegmanX];

@@ -141,12 +141,13 @@ Blockly.Blocks['maze_if'] = {
    */
   init: function() {
     var DIRECTIONS =
-        [[BlocklyGames.getMsg('Maze_pathAhead'), 'isPathForward'],
-         [BlocklyGames.getMsg('Maze_pathLeft'), 'isPathLeft'],
-         [BlocklyGames.getMsg('Maze_pathRight'), 'isPathRight']];
+        [[BlocklyGames.getMsg('Variables_pathUp'), 'isPathUp'],
+         [BlocklyGames.getMsg('Variables_pathDown'), 'isPathDown'],
+	 [BlocklyGames.getMsg('Variables_pathLeft'), 'isPathLeft'],
+         [BlocklyGames.getMsg('Variables_pathRight'), 'isPathRight']];
     // Append arrows to direction messages.
-    DIRECTIONS[1][0] += Variables.Blocks.LEFT_TURN;
-    DIRECTIONS[2][0] += Variables.Blocks.RIGHT_TURN;
+    //DIRECTIONS[1][0] += Variables.Blocks.LEFT_TURN;
+    //DIRECTIONS[2][0] += Variables.Blocks.RIGHT_TURN;
     this.setColour(Variables.Blocks.LOGIC_HUE);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown(DIRECTIONS), 'DIR');

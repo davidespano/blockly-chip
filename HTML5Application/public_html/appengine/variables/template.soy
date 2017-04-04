@@ -40,7 +40,11 @@
     <span id="Variables_left">direzione = sinistra</span>
     <span id="Variables_right">direzione = destra</span>
     <span id="Variables_collect">raccogli</span>
-    <span id="Variables_collect_help">Raccoglie la spazzatura dal percorso</span>    
+    <span id="Variables_collect_help">Raccoglie la spazzatura dal percorso</span>
+    <span id="Variables_pathUp">Se c'&egrave; strada in alto</span>
+    <span id="Variables_pathDown">Se c'&egrave; strada in basso</span>
+    <span id="Variables_pathLeft">Se c'&egrave; strada a sinistra</span>
+    <span id="Variables_pathRight">Se c'&egrave; strada a destra</span>    
 </div>
 {/template}
 
@@ -66,6 +70,8 @@
           {/call}
         </h1>
       </td>
+      <td style="width: 50px; text-align: center; vertical-align: middle;"><img src="variables/garbage-mini.png" alt="garbage"/></td>
+      <td id="min-garbage" style="width: 200px; text-align: left; vertical-align: middle;">X %0</td>
       <td class="farSide">
         <select id="languageMenu" style="display:none"></select>
         &nbsp;
@@ -95,7 +101,7 @@
   </div>
   
   <div style="width:400px; margin-top: 10px; margin-bottom: 10px;">
- 	<button id="runButton" class="primary" title="Fa eseguire al robot il programma" style="display:block;">
+ 	<button id="runButton" class="primary" title="Fai eseguire al robot il programma" style="display:block;">
           <img src="common/1x1.gif" class="run icon21">Esegui il programma
         </button>
         <button id="resetButton" class="primary" style="display: none;" title="Riporta il robot all'inizio del percorso">
@@ -109,7 +115,7 @@
     </th>
     <tr>
       <td style="width: 50px; text-align: center; vertical-align: middle;"><img src="variables/garbage-mini.png" alt="garbage"/></td>
-      <td style="width: 200px; text-align: left; vertical-align: middle;">Rifiuti</td>
+      <td style="width: 200px; text-align: left; vertical-align: middle;">Rifiuti raccolti</td>
       <td style="width: 150px">
          <span id="garbage-cnt" class="variable">0</span>
       </td>
@@ -133,6 +139,14 @@
   {call BlocklyGames.soy.abortDialog /}
   {call BlocklyGames.soy.storageDialog /}
 
+   <div id="dialogLowGarbage" class="dialogHiddenContent">
+      <table><tr><td>
+        <img src="common/help.png">
+      </td><td>&nbsp;</td><td>
+        Chip non ha raccolto abbastanza rifiuti in questo livello! Deve raccogliere almeno %0 rifiuti!
+      </tr></table>
+      {call BlocklyGames.soy.ok /}
+   </div>
   {if $ij.level == 1}
     <div id="dialogHelpStack" class="dialogHiddenContent">
       <table><tr><td>
@@ -248,7 +262,7 @@
     <block type="maze_moveForward"></block>
     <block type="maze_turn"><field name="DIR">turnUp</field></block>
     <block type="variables_collect"></block>
-    {if $ij.level > 2}
+    {if $ij.level > 3}
       <block type="maze_forever"></block>
       {if $ij.level == 6}
         <block type="maze_if"><field name="DIR">isPathLeft</field></block>
