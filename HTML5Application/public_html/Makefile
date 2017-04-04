@@ -125,7 +125,7 @@ common-it:
 
 #it: index-it puzzle-it maze-it bird-it turtle-it movie-it pond-docs-it pond-tutor-it pond-duck-it genetics-it
 
-it: index-it puzzle-it maze-it bird-it variables-it
+it: index-it puzzle-it maze-it variables-it
 
 # [davide] fine modifiche
 languages:

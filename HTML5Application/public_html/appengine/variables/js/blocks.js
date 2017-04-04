@@ -55,6 +55,30 @@ Variables.Blocks.LEFT_TURN = ' \u21BA';
  */
 Variables.Blocks.RIGHT_TURN = ' \u21BB';
 
+// Extension for collecting garbage
+Blockly.Blocks['variables_collect'] = {
+  /**
+   * Block for moving forward.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "message0": BlocklyGames.getMsg('Variables_collect'),
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": Variables.Blocks.MOVEMENT_HUE,
+      "tooltip": BlocklyGames.getMsg('Variables_collect_help')
+    });
+  }
+};
+
+Blockly.JavaScript['variables_collect'] = function(block) {
+  // Generate JavaScript for moving forward.
+  return 'collect(\'block_id_' + block.id + '\');\n';
+};
+
+
+
 // Extensions to Blockly's language and JavaScript generator.
 
 Blockly.Blocks['maze_moveForward'] = {

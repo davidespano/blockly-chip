@@ -885,6 +885,7 @@ Variables.reset = function(first) {
   // Move Pegman into position.
   Variables.pegmanX = Variables.start_.x;
   Variables.pegmanY = Variables.start_.y;
+  Variables.garbage = 0;
 
   if (first) {
     Variables.pegmanD = Variables.startDirection + 1;
@@ -1013,6 +1014,16 @@ Variables.resetButtonClick = function(e) {
 Variables.initInterpreter = function(interpreter, scope) {
   // API
   var wrapper;
+  
+  // [davide] chip instruction set
+  wrapper = function(id) {
+    Variables.collect(id.toString());
+  };
+  interpreter.setProperty(scope, 'collect',
+      interpreter.createNativeFunction(wrapper));
+  
+  // end chip instruction set 
+  
   wrapper = function(id) {
     Variables.move(0, id.toString());
   };
@@ -1487,6 +1498,17 @@ Variables.constrainDirection16 = function(d) {
   }
   return d;
 };
+
+Variables.collect = function(id){
+    if(Variables.map[Variables.pegmanY][Variables.pegmanX] !== Variables.SquareType.GARBAGE){
+        Variables.log.push(['fail_forward', id]);
+        throw false;
+    }
+    
+    Variables.garbage++;
+    Variables.scheduleVariableUpdate('garbage-cnt', Variables.garbage);
+}
+
 
 // Core functions.
 

@@ -38,7 +38,9 @@
     <span id="Variables_up">direzione = alto</span>
     <span id="Variables_down">direzione = basso</span>  
     <span id="Variables_left">direzione = sinistra</span>
-    <span id="Variables_right">direzione = destra</span>  
+    <span id="Variables_right">direzione = destra</span>
+    <span id="Variables_collect">raccogli</span>
+    <span id="Variables_collect_help">Raccoglie la spazzatura dal percorso</span>    
 </div>
 {/template}
 
@@ -245,6 +247,7 @@
   <xml id="toolbox" style="display: none;">
     <block type="maze_moveForward"></block>
     <block type="maze_turn"><field name="DIR">turnUp</field></block>
+    <block type="variables_collect"></block>
     {if $ij.level > 2}
       <block type="maze_forever"></block>
       {if $ij.level == 6}
