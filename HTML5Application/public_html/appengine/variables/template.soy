@@ -1,0 +1,260 @@
+{namespace Variables.soy}
+
+/**
+ * This is a Closure Template.
+ *
+ * To regenerate just English, run:
+ *   make maze-en
+ *
+ * To regenerate all languages, run:
+ *   make languages
+ */
+
+/**
+ * Translated messages for use in JavaScript.
+ */
+{template .messages}
+  {call BlocklyGames.soy.messages /}
+  <div style="display: none">
+    <span id="Maze_moveForward">vai avanti</span>
+    <span id="Maze_turnLeft">girati a sinistra</span>
+    <span id="Maze_turnRight">girati a destra</span>
+    <span id="Maze_doCode">fai</span>
+    <span id="Maze_elseCode">altrimenti</span>
+    <span id="Maze_helpIfElse">I blocchi se-allora fanno una azione o l'altra</span>
+    <span id="Maze_pathAhead">se c'&egrave; strada avanti</span>
+    <span id="Maze_pathLeft">se c'&egrave; strada a sinistra</span>
+    <span id="Maze_pathRight">se c'&egrave; strada a destra</span>
+    <span id="Maze_repeatUntil">ripeti fino a </span>
+    <span id="Maze_moveForwardTooltip">Il robot fa un passo avanti</span>
+    <span id="Maze_turnTooltip">Il robot cambia si gira in una direzione (alto, basso, destra o sinistra)</span>
+    <span id="Maze_ifTooltip">Se c'&egrave; strada in una specifica direzione, allora fai qualche azione</span>
+    <span id="Maze_ifelseTooltip">Se c'&egrave; strada in una specifica direzione, allora fai il primo blocco di azioni. Altrimenti fai il secondo.</span>
+    <span id="Maze_whileTooltip">Ripeti le seguenti azioni fino a quando non raggiungi il traguardo.</span>
+    <span id="Variables_capacity0">Ti rimangono %0 blocchi.</span>
+    <span id="Variables_capacity1">Puoi aggiungere solo %1 blocco.</span>
+    <span id="Variables_capacity2">Puoi aggiungere solo altri %2 blocchi.</span>
+    <!-- Variables related messages -->
+    <span id="Variables_up">direzione = alto</span>
+    <span id="Variables_down">direzione = basso</span>  
+    <span id="Variables_left">direzione = sinistra</span>
+    <span id="Variables_right">direzione = destra</span>  
+</div>
+{/template}
+
+/**
+ * Web page structure.
+ */
+{template .start}
+  {call .messages /}
+  <table width="100%">
+    <tr>
+      <td>
+        <h1>
+          {call BlocklyGames.soy.titleSpan}
+            {param appName}
+              Variabili
+            {/param}
+          {/call}
+          {call BlocklyGames.soy.levelLinks}
+            {param level: $ij.level /}
+            {param maxLevel: $ij.maxLevel /}
+            {param lang: $ij.lang /}
+            {param suffix}&skin={$ij.skin}{/param}
+          {/call}
+        </h1>
+      </td>
+      <td class="farSide">
+        <select id="languageMenu" style="display:none"></select>
+        &nbsp;
+        <button id="linkButton" title="Salva e collega ai blocchi">
+          <img src="common/1x1.gif" class="link icon21">
+        </button>
+        &nbsp;
+        <button id="pegmanButton" style="display: none">
+          <img src="common/1x1.gif">
+          <span id="pegmanButtonArrow"></span>
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <div id="visualization">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="svgVariables" width="400px" height="400px">
+      <g id="look">
+        <path d="M 0,-15 a 15 15 0 0 1 15 15" />
+        <path d="M 0,-35 a 35 35 0 0 1 35 35" />
+        <path d="M 0,-55 a 55 55 0 0 1 55 55" />
+      </g>
+    </svg>
+    <div id="capacityBubble">
+      <div id="capacity"></div>
+    </div>
+  </div>
+  
+  <div style="width:400px; margin-top: 10px; margin-bottom: 10px;">
+ 	<button id="runButton" class="primary" title="Fa eseguire al robot il programma" style="display:block;">
+          <img src="common/1x1.gif" class="run icon21">Esegui il programma
+        </button>
+        <button id="resetButton" class="primary" style="display: none;" title="Riporta il robot all'inizio del percorso">
+          <img src="common/1x1.gif" class="stop icon21"> Rinizia
+        </button>
+  </div>
+
+  <table style="width: 400px">
+    <th style="text-align: left; font-weight:bold;">
+	Variabili
+    </th>
+    <tr>
+      <td style="width: 50px; text-align: center; vertical-align: middle;"><img src="variables/garbage-mini.png" alt="garbage"/></td>
+      <td style="width: 200px; text-align: left; vertical-align: middle;">Rifiuti</td>
+      <td style="width: 150px">
+         <span id="garbage-cnt" class="variable">0</span>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 50px; text-align: center; vertical-align: middle;"><img src="variables/directions.jpg" alt="garbage"/></td>
+      <td style="width: 200px; text-align: left; vertical-align: middle;">Direzione</td>
+      <td style="width: 150px">
+         <span id="direction-dsp" class="variable">Destra</span>
+      </td>
+    </tr>
+  </table>
+
+  {call .toolbox /}
+  <div id="blockly"></div>
+
+  <div id="pegmanMenu" style="display: none"></div>
+
+  {call BlocklyGames.soy.dialog /}
+  {call BlocklyGames.soy.doneDialog /}
+  {call BlocklyGames.soy.abortDialog /}
+  {call BlocklyGames.soy.storageDialog /}
+
+  {if $ij.level == 1}
+    <div id="dialogHelpStack" class="dialogHiddenContent">
+      <table><tr><td>
+        <img src="common/help.png">
+      </td><td>&nbsp;</td><td>
+        Collega qualche blocco 'vai avanti' per aiutarmi a raggiungere il traguardo.
+      </td><td valign="top">
+        <img src="maze/help_stack.png" class="mirrorImg" height=63 width=136>
+      </td></tr></table>
+    </div>
+    <div id="dialogHelpOneTopBlock" class="dialogHiddenContent">
+      <table><tr><td>
+        <img src="common/help.png">
+      </td><td>&nbsp;</td><td>
+	In questo livello, devi collegare insieme tutti i blocchi nello spazio di lavoro.        s
+        <div id="sampleOneTopBlock" class="readonly"></div>
+      </td></tr></table>
+    </div>
+    <div id="dialogHelpRun" class="dialogHiddenContent">
+      <table><tr><td>
+	Esegui il programma per vedere cosa succeda
+      </td><td rowspan=2>
+        <img src="common/help.png">
+      </td></tr><tr><td>
+        <div><img src="maze/help_run.png" class="mirrorImg" height=27 width=141></div>
+      </td></tr></table>
+    </div>
+  {elseif $ij.level == 2}
+    <div id="dialogHelpReset" class="dialogHiddenContent">
+      <table><tr><td>
+ 	Il tuo programma non ha risolto il labirinto. Premi 'Reimposta' e prova di nuovo.
+      </td><td rowspan=2>
+        <img src="common/help.png">
+      </td></tr><tr><td>
+        <div><img src="maze/help_run.png" class="mirrorImg" height=27 width=141></div>
+      </td></tr></table>
+    </div>
+  {elseif $ij.level == 3 or $ij.level == 4}
+    {if $ij.level == 3}
+      <div id="dialogHelpRepeat" class="dialogHiddenContent">
+        <table><tr><td>
+          <img src="maze/help_up.png">
+        </td><td>
+	  Raggiungi la fine del percorso utilizzando solo due blocchi. Utilizza il blocco 'ripeti' per eseguire un blocco pi&ugrave; di una volta. 
+        </td><td>
+          <img src="common/help.png">
+        </td></tr></table>
+      </div>
+    {/if}
+    <div id="dialogHelpCapacity" class="dialogHiddenContent">
+      <table><tr><td>
+        <img src="common/help.png">
+      </td><td>&nbsp;</td><td>
+ 	Hai utilizzato il massimo numero di blocchi per questo livello. Per inserire un nuovo blocco, devi prima cancellarne uno dall'area di lavoro. 
+      </td></tr></table>
+    </div>
+    <div id="dialogHelpRepeatMany" class="dialogHiddenContent">
+      <table><tr><td>
+        <img src="maze/help_up.png">
+      </td><td>
+	Puoi inserire pi&ugrave; di un blocco dentro il blocco 'ripeti'.        
+      </td><td>
+        <img src="common/help.png">
+      </td></tr></table>
+    </div>
+  {elseif $ij.level == 6}
+    <div id="dialogHelpIf" class="dialogHiddenContent">
+      <table><tr><td>
+        <img src="maze/help_up.png">
+      </td><td>
+	Un blocco 'se-allora' far&agrave; qualcosa solo se la condizione &egrave; vera. Prova ad andare verso sinistra se c'&egrave; strada.         
+      </td><td>
+        <img src="common/help.png">
+      </td></tr></table>
+    </div>
+  {elseif $ij.level == 7}
+    <div id="dialogHelpMenu" class="dialogHiddenContent">
+      <table><tr><td>
+        <img src="maze/help_up.png">
+      </td><td id="helpMenuText">
+	Clicca su %1 nel blocco 'se-allora' per cambiare la sua condizione. 
+      </td><td>
+        <img src="common/help.png">
+      </td></tr></table>
+    </div>
+  {elseif $ij.level == 9}
+    <div id="dialogHelpIfElse" class="dialogHiddenContent">
+      <table><tr><td>
+        <img src="maze/help_down.png">
+      </td><td>
+	I blocchi 'se-allora' fanno una cosa o un'altra.
+      </td><td>
+        <img src="common/help.png">
+      </td></tr></table>
+    </div>
+  {elseif $ij.level == 10}
+    <div id="dialogHelpWallFollow" class="dialogHiddenContent">
+      <table><tr><td>
+        <img src="common/help.png">
+      </td><td>&nbsp;</td><td>
+	Sai risolvere questo complicato labirinto? Prova a seguire il percorso tenendo il muro alla tua sinistra. Il livello &egrave; per programmatori esperti!
+        {call BlocklyGames.soy.ok /}
+      </td></tr></table>
+    </div>
+  {/if}
+{/template}
+
+/**
+ * Toolboxes for each level.
+ */
+{template .toolbox}
+  <xml id="toolbox" style="display: none;">
+    <block type="maze_moveForward"></block>
+    <block type="maze_turn"><field name="DIR">turnUp</field></block>
+    {if $ij.level > 2}
+      <block type="maze_forever"></block>
+      {if $ij.level == 6}
+        <block type="maze_if"><field name="DIR">isPathLeft</field></block>
+      {elseif $ij.level > 6}
+        <block type="maze_if"></block>
+        {if $ij.level > 8}
+          <block type="maze_ifElse"></block>
+        {/if}
+      {/if}
+    {/if}
+  </xml>
+{/template}
