@@ -47,8 +47,8 @@
     <span id="Variables_pathRight">Se c'&egrave; strada a Est</span>
     <span id="Variables_pathForward">Se c'&egrave; strada davanti</span>
     <span id="Variables_pathBack">Se c'&egrave; strada alle spalle</span>
-    <span id="Variables_pathOnLeft">Se c'&egrave; strada alla sinistra</span>
-    <span id="Variables_pathOnRight">Se c'&egrave; strada alla destra</span>
+    <span id="Variables_pathOnLeft">Se c'&egrave; strada sulla sinistra</span>
+    <span id="Variables_pathOnRight">Se c'&egrave; strada sulla destra</span>
     <span id="Variables_rotateLeft">Gira verso sinistra</span>
     <span id="Variables_rotateRight">Gira verso destra</span>
     <span id="Variables_dirUp">Nord</span>
@@ -186,7 +186,7 @@
         {call BlocklyGames.soy.ok /}
       </td></tr></table>
     </div>
-  {elseif $ij.level == 7}
+  {elseif $ij.level == 8}
       <div id="dialogInit" class="dialogHiddenContent">
       <table><tr><td>
         <img src="common/help.png">
@@ -216,13 +216,13 @@
   <xml id="toolbox" style="display: none;">
     <block type="maze_moveForward"></block>
     <block type="variables_collect"></block>
-    {if $ij.level < 8 and $ij.level != 4}
+    {if $ij.level < 9 and $ij.level != 4}
     <block type="maze_turn"><field name="DIR">turnUp</field></block>
     {else}
     <block type="maze_rotate"><field name="DIR">rotateLeft</field></block>
     {/if}
     {if $ij.level > 3}
-      {if $ij.level == 6 or $ij.level == 7}
+      {if $ij.level == 6 or $ij.level == 7 or $ij.level == 8}
         <block type="maze_if"><field name="DIR">isPathUp</field></block>
       {elseif $ij.level > 6}
         <block type="maze_if_fwd"></block>
