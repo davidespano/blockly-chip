@@ -203,7 +203,9 @@ Blockly.Blocks['maze_if_fwd'] = {
   init: function() {
     var DIRECTIONS =
         [[BlocklyGames.getMsg('Variables_pathForward'), 'isPathForward'],
-         [BlocklyGames.getMsg('Variables_pathBack'), 'isPathBack']];
+         [BlocklyGames.getMsg('Variables_pathBack'), 'isPathBack'],
+         [BlocklyGames.getMsg('Variables_pathOnLeft'), 'isPathOnLeft'],
+         [BlocklyGames.getMsg('Variables_pathOnRight'), 'isPathOnRight']];
     // Append arrows to direction messages.
     //DIRECTIONS[1][0] += Variables.Blocks.LEFT_TURN;
     //DIRECTIONS[2][0] += Variables.Blocks.RIGHT_TURN;

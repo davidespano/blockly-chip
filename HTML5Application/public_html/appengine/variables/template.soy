@@ -35,20 +35,26 @@
     <span id="Variables_capacity1">Puoi aggiungere solo %1 blocco.</span>
     <span id="Variables_capacity2">Puoi aggiungere solo altri %2 blocchi.</span>
     <!-- Variables related messages -->
-    <span id="Variables_up">direzione = alto</span>
-    <span id="Variables_down">direzione = basso</span>  
-    <span id="Variables_left">direzione = sinistra</span>
-    <span id="Variables_right">direzione = destra</span>
+    <span id="Variables_up">direzione = Nord</span>
+    <span id="Variables_down">direzione = Sud</span>  
+    <span id="Variables_left">direzione = Ovest</span>
+    <span id="Variables_right">direzione = Est</span>
     <span id="Variables_collect">raccogli</span>
     <span id="Variables_collect_help">Raccoglie la spazzatura dal percorso</span>
-    <span id="Variables_pathUp">Se c'&egrave; strada in alto</span>
-    <span id="Variables_pathDown">Se c'&egrave; strada in basso</span>
-    <span id="Variables_pathLeft">Se c'&egrave; strada a sinistra</span>
-    <span id="Variables_pathRight">Se c'&egrave; strada a destra</span>
-    <span id="Variables_pathForward">Se c'&egrave; strada avanti</span>
-    <span id="Variables_pathBack">Se c'&egrave; strada dietro</span>
+    <span id="Variables_pathUp">Se c'&egrave; strada a Nord</span>
+    <span id="Variables_pathDown">Se c'&egrave; strada a Sud</span>
+    <span id="Variables_pathLeft">Se c'&egrave; strada a Ovest</span>
+    <span id="Variables_pathRight">Se c'&egrave; strada a Est</span>
+    <span id="Variables_pathForward">Se c'&egrave; strada davanti</span>
+    <span id="Variables_pathBack">Se c'&egrave; strada alle spalle</span>
+    <span id="Variables_pathOnLeft">Se c'&egrave; strada alla sinistra</span>
+    <span id="Variables_pathOnRight">Se c'&egrave; strada alla destra</span>
     <span id="Variables_rotateLeft">Gira verso sinistra</span>
-    <span id="Variables_rotateRight">Gira verso destra</span>    
+    <span id="Variables_rotateRight">Gira verso destra</span>
+    <span id="Variables_dirUp">Nord</span>
+    <span id="Variables_dirDown">Sud</span>
+    <span id="Variables_dirLeft">Ovest</span>
+    <span id="Variables_dirRight">Est</span>  
 </div>
 {/template}
 
@@ -152,106 +158,51 @@
       {call BlocklyGames.soy.ok /}
    </div>
   {if $ij.level == 1}
-    <div id="dialogHelpStack" class="dialogHiddenContent">
+    <div id="dialogInit" class="dialogHiddenContent">
       <table><tr><td>
         <img src="common/help.png">
       </td><td>&nbsp;</td><td>
-        Collega qualche blocco 'vai avanti' per aiutarmi a raggiungere il traguardo.
-      </td><td valign="top">
-        <img src="maze/help_stack.png" class="mirrorImg" height=63 width=136>
+	Usa l'istruzione 'raccogli' per far raccogliere i rifiuti a Chip.
+        {call BlocklyGames.soy.ok /}
       </td></tr></table>
     </div>
-    <div id="dialogHelpOneTopBlock" class="dialogHiddenContent">
+  {elseif $ij.level == 4}
+     <div id="dialogInit" class="dialogHiddenContent">
       <table><tr><td>
         <img src="common/help.png">
       </td><td>&nbsp;</td><td>
-	In questo livello, devi collegare insieme tutti i blocchi nello spazio di lavoro.        s
-        <div id="sampleOneTopBlock" class="readonly"></div>
+	Usa l'istruzione 'Gira verso (destra o sinistra)' per far girare Chip su se stesso. <br/>
+        Usa l'istruzione 'Ripeti fino a <image height="16px" width="12px" xlink:href="variables/marker.png"></image>' per ripetere azioni e usare meno blocchi.
+        {call BlocklyGames.soy.ok /}
       </td></tr></table>
     </div>
-    <div id="dialogHelpRun" class="dialogHiddenContent">
-      <table><tr><td>
-	Esegui il programma per vedere cosa succeda
-      </td><td rowspan=2>
-        <img src="common/help.png">
-      </td></tr><tr><td>
-        <div><img src="maze/help_run.png" class="mirrorImg" height=27 width=141></div>
-      </td></tr></table>
-    </div>
-  {elseif $ij.level == 2}
-    <div id="dialogHelpReset" class="dialogHiddenContent">
-      <table><tr><td>
- 	Il tuo programma non ha risolto il labirinto. Premi 'Reimposta' e prova di nuovo.
-      </td><td rowspan=2>
-        <img src="common/help.png">
-      </td></tr><tr><td>
-        <div><img src="maze/help_run.png" class="mirrorImg" height=27 width=141></div>
-      </td></tr></table>
-    </div>
-  {elseif $ij.level == 3 or $ij.level == 4}
-    {if $ij.level == 3}
-      <div id="dialogHelpRepeat" class="dialogHiddenContent">
-        <table><tr><td>
-          <img src="maze/help_up.png">
-        </td><td>
-	  Raggiungi la fine del percorso utilizzando solo due blocchi. Utilizza il blocco 'ripeti' per eseguire un blocco pi&ugrave; di una volta. 
-        </td><td>
-          <img src="common/help.png">
-        </td></tr></table>
-      </div>
-    {/if}
-    <div id="dialogHelpCapacity" class="dialogHiddenContent">
-      <table><tr><td>
-        <img src="common/help.png">
-      </td><td>&nbsp;</td><td>
- 	Hai utilizzato il massimo numero di blocchi per questo livello. Per inserire un nuovo blocco, devi prima cancellarne uno dall'area di lavoro. 
-      </td></tr></table>
-    </div>
-    <div id="dialogHelpRepeatMany" class="dialogHiddenContent">
-      <table><tr><td>
-        <img src="maze/help_up.png">
-      </td><td>
-	Puoi inserire pi&ugrave; di un blocco dentro il blocco 'ripeti'.        
-      </td><td>
-        <img src="common/help.png">
-      </td></tr></table>
-    </div>
+    
   {elseif $ij.level == 6}
-    <div id="dialogHelpIf" class="dialogHiddenContent">
+      <div id="dialogInit" class="dialogHiddenContent">
       <table><tr><td>
-        <img src="maze/help_up.png">
-      </td><td>
-	Un blocco 'se-allora' far&agrave; qualcosa solo se la condizione &egrave; vera. Prova ad andare verso sinistra se c'&egrave; strada.         
-      </td><td>
         <img src="common/help.png">
+      </td><td>&nbsp;</td><td>
+	Usa l'istruzione 'Se c'&egrave; strada a (Nord, Sud, Ovest, Est)' per verificare se ci sia la strada prima di camminare.
+        {call BlocklyGames.soy.ok /}
       </td></tr></table>
     </div>
   {elseif $ij.level == 7}
-    <div id="dialogHelpMenu" class="dialogHiddenContent">
-      <table><tr><td>
-        <img src="maze/help_up.png">
-      </td><td id="helpMenuText">
-	Clicca su %1 nel blocco 'se-allora' per cambiare la sua condizione. 
-      </td><td>
-        <img src="common/help.png">
-      </td></tr></table>
-    </div>
-  {elseif $ij.level == 9}
-    <div id="dialogHelpIfElse" class="dialogHiddenContent">
-      <table><tr><td>
-        <img src="maze/help_down.png">
-      </td><td>
-	I blocchi 'se-allora' fanno una cosa o un'altra.
-      </td><td>
-        <img src="common/help.png">
-      </td></tr></table>
-    </div>
-  {elseif $ij.level == 10}
-    <div id="dialogHelpWallFollow" class="dialogHiddenContent">
+      <div id="dialogInit" class="dialogHiddenContent">
       <table><tr><td>
         <img src="common/help.png">
       </td><td>&nbsp;</td><td>
-	Sai risolvere questo complicato labirinto? Prova a seguire il percorso tenendo il muro alla tua sinistra. Il livello &egrave; per programmatori esperti!
+	Risolvi lo stesso labirinto utilizzando meno istruzioni! Suggerimento: fai in modo che Chip ripeta una serie di azioni...
+        {call BlocklyGames.soy.ok /}
+      </td></tr></table>
+    </div>
+   
+  {elseif $ij.level == 10}
+    <div id="dialogInit" class="dialogHiddenContent">
+      <table><tr><td>
+        <img src="common/help.png">
+      </td><td>&nbsp;</td><td>
+	Questo livello &egrave; molto difficile e non puoi raccogliere tutta la spazzatura. <br/>
+        Suggerimento: ripeti le azioni provando prima a sinistra e poi a destra. 
         {call BlocklyGames.soy.ok /}
       </td></tr></table>
     </div>
@@ -264,19 +215,19 @@
 {template .toolbox}
   <xml id="toolbox" style="display: none;">
     <block type="maze_moveForward"></block>
-    <block type="maze_turn"><field name="DIR">turnUp</field></block>
     <block type="variables_collect"></block>
+    {if $ij.level < 8 and $ij.level != 4}
+    <block type="maze_turn"><field name="DIR">turnUp</field></block>
+    {else}
+    <block type="maze_rotate"><field name="DIR">rotateLeft</field></block>
+    {/if}
     {if $ij.level > 3}
-      <block type="maze_forever"></block>
-      {if $ij.level == 6}
-        <block type="maze_rotate"><field name="DIR">rotateLeft</field></block>
-        <block type="maze_if"><field name="DIR">isPathForward</field></block>
+      {if $ij.level == 6 or $ij.level == 7}
+        <block type="maze_if"><field name="DIR">isPathUp</field></block>
       {elseif $ij.level > 6}
-        <block type="maze_if"></block>
-        {if $ij.level > 8}
-          <block type="maze_ifElse"></block>
-        {/if}
+        <block type="maze_if_fwd"></block>
       {/if}
+       <block type="maze_forever"></block>
     {/if}
   </xml>
 {/template}

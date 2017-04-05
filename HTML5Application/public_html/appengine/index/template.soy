@@ -26,17 +26,10 @@
 {template .start}
   {call .messages /}
   <div id="header">
-    <img id="banner" src="index/title-beta.png" height="51" width="244" alt="Blockly Games">
+    <img id="banner" src="index/logocg3hci-nobgmedium.png" alt="CG3HCI lab">
     <div id="subtitle">
-      Giochi per i programmatori di domani
+      Progetto <span style="font-weight: bold; font-size: 1.2em;">Chip</span>, Tutti a Iscol@, linea B2
       {sp}&nbsp;
-      {if $ij.html}
-        <a href="about.html?lang={$ij.lang}">
-      {else}
-        <a href="about?lang={$ij.lang}">
-      {/if}
-        Altre informazioni...
-      </a>
     </div>
   </div>
   <svg height="100%" width="100%" version="1.1"
@@ -55,27 +48,27 @@
         />
       </svg>
       {call .appLink}
-        {param app: 'puzzle' /}
+        {param app: 'variables' /}
         {param x: 10 /}
         {param y: 15 /}
         {param contentText}
-          Puzzle
+          Variabili
         {/param}
       {/call}
       {call .appLink}
-        {param app: 'maze' /}
+        {param app: 'block' /}
         {param x: 16 /}
         {param y: 47 /}
         {param contentText}
-          Labirinto
+          Bloccato
         {/param}
       {/call}
       {call .appLink}
-        {param app: 'variables' /}
+        {param app: 'block' /}
         {param x: 29 /}
         {param y: 75 /}
         {param contentText}
-          Variabili
+          Bloccato
         {/param}
       {/call}
       {call .appLink}
@@ -114,9 +107,9 @@
   </svg>
   <select id="languageMenu" style="display: none"></select>
   <p id="clearDataPara" style="visibility: hidden">
-    {msg meaning="Index.startOver" desc="Label next to button for deleting all the user's data."}Want to start over?{/msg}
+    Vuoi iniziare da capo?
     <button class="secondary" id="clearData">
-      {{msg meaning="Index.clearData" desc="Text on button for deleting all the user's data.\n{lb}{lb}Identical|Clear data{rb}{rb}"}}Clear data{{/msg}}</span>
+      Cancella i dati
     </button>
   </p>
 {/template}
