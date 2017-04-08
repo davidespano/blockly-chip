@@ -236,12 +236,10 @@ Blockly.Blocks['maze_ifElse'] = {
    */
   init: function() {
     var DIRECTIONS =
-        [[BlocklyGames.getMsg('Maze_pathAhead'), 'isPathForward'],
-         [BlocklyGames.getMsg('Maze_pathLeft'), 'isPathLeft'],
-         [BlocklyGames.getMsg('Maze_pathRight'), 'isPathRight']];
-    // Append arrows to direction messages.
-    DIRECTIONS[1][0] += Chip.Blocks.LEFT_TURN;
-    DIRECTIONS[2][0] += Chip.Blocks.RIGHT_TURN;
+         [[BlocklyGames.getMsg('Chip_pathUp'), 'isPathUp'],
+         [BlocklyGames.getMsg('Chip_pathDown'), 'isPathDown'],
+	 [BlocklyGames.getMsg('Chip_pathLeft'), 'isPathLeft'],
+         [BlocklyGames.getMsg('Chip_pathRight'), 'isPathRight']];
     this.setColour(Chip.Blocks.LOGIC_HUE);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown(DIRECTIONS), 'DIR');
@@ -256,6 +254,185 @@ Blockly.Blocks['maze_ifElse'] = {
 };
 
 Blockly.JavaScript['maze_ifElse'] = function(block) {
+  // Generate JavaScript for 'if/else' conditional if there is a path.
+  var argument = block.getFieldValue('DIR') +
+      '(\'block_id_' + block.id + '\')';
+  var branch0 = Blockly.JavaScript.statementToCode(block, 'DO');
+  var branch1 = Blockly.JavaScript.statementToCode(block, 'ELSE');
+  var code = 'if (' + argument + ') {\n' + branch0 +
+             '} else {\n' + branch1 + '}\n';
+  return code;
+};
+
+
+Blockly.Blocks['maze_ifElse_fwd'] = {
+  /**
+   * Block for 'if/else' conditional if there is a path.
+   * @this Blockly.Block
+   */
+  init: function() {
+    var DIRECTIONS =
+        [[BlocklyGames.getMsg('Chip_pathForward'), 'isPathForward'],
+         [BlocklyGames.getMsg('Chip_pathBack'), 'isPathBack'],
+         [BlocklyGames.getMsg('Chip_pathOnLeft'), 'isPathOnLeft'],
+         [BlocklyGames.getMsg('Chip_pathOnRight'), 'isPathOnRight']];
+    this.setColour(Chip.Blocks.LOGIC_HUE);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown(DIRECTIONS), 'DIR');
+    this.appendStatementInput('DO')
+        .appendField(BlocklyGames.getMsg('Maze_doCode'));
+    this.appendStatementInput('ELSE')
+        .appendField(BlocklyGames.getMsg('Maze_elseCode'));
+    this.setTooltip(BlocklyGames.getMsg('Maze_ifelseTooltip'));
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+  }
+};
+
+Blockly.JavaScript['maze_ifElse_fwd'] = function(block) {
+  // Generate JavaScript for 'if/else' conditional if there is a path.
+  var argument = block.getFieldValue('DIR') +
+      '(\'block_id_' + block.id + '\')';
+  var branch0 = Blockly.JavaScript.statementToCode(block, 'DO');
+  var branch1 = Blockly.JavaScript.statementToCode(block, 'ELSE');
+  var code = 'if (' + argument + ') {\n' + branch0 +
+             '} else {\n' + branch1 + '}\n';
+  return code;
+};
+
+
+Blockly.Blocks['garbage_if'] = {
+  /**
+   * Block for 'if' conditional if there is a path.
+   * @this Blockly.Block
+   */
+  init: function() {
+    var DIRECTIONS =
+        [[BlocklyGames.getMsg('Chip_garbageHere'), 'isGarbageHere'],
+         [BlocklyGames.getMsg('Chip_garbageUp'), 'isGarbageUp'],
+         [BlocklyGames.getMsg('Chip_garbageDown'), 'isGarbageDown'],
+	 [BlocklyGames.getMsg('Chip_garbageLeft'), 'isGarbageLeft'],
+         [BlocklyGames.getMsg('Chip_garbageRight'), 'isGarbageRight']];
+    // Append arrows to direction messages.
+    //DIRECTIONS[1][0] += Chip.Blocks.LEFT_TURN;
+    //DIRECTIONS[2][0] += Chip.Blocks.RIGHT_TURN;
+    this.setColour(Chip.Blocks.LOGIC_HUE);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown(DIRECTIONS), 'DIR');
+    this.appendStatementInput('DO')
+        .appendField(BlocklyGames.getMsg('Maze_doCode'));
+    this.setTooltip(BlocklyGames.getMsg('Maze_ifTooltip'));
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+  }
+};
+
+Blockly.JavaScript['garbage_if'] = function(block) {
+  // Generate JavaScript for 'if' conditional if there is a path.
+  var argument = block.getFieldValue('DIR') +
+      '(\'block_id_' + block.id + '\')';
+  var branch = Blockly.JavaScript.statementToCode(block, 'DO');
+  var code = 'if (' + argument + ') {\n' + branch + '}\n';
+  return code;
+};
+
+Blockly.Blocks['garbage_ifElse'] = {
+  /**
+   * Block for 'if/else' conditional if there is a path.
+   * @this Blockly.Block
+   */
+  init: function() {
+    var DIRECTIONS =
+        [[BlocklyGames.getMsg('Chip_garbageHere'), 'isGarbageHere'],
+         [BlocklyGames.getMsg('Chip_garbageUp'), 'isGarbageUp'],
+         [BlocklyGames.getMsg('Chip_garbageDown'), 'isGarbageDown'],
+	 [BlocklyGames.getMsg('Chip_garbageLeft'), 'isGarbageLeft'],
+         [BlocklyGames.getMsg('Chip_garbageRight'), 'isGarbageRight']];
+    this.setColour(Chip.Blocks.LOGIC_HUE);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown(DIRECTIONS), 'DIR');
+    this.appendStatementInput('DO')
+        .appendField(BlocklyGames.getMsg('Maze_doCode'));
+    this.appendStatementInput('ELSE')
+        .appendField(BlocklyGames.getMsg('Maze_elseCode'));
+    this.setTooltip(BlocklyGames.getMsg('Maze_ifelseTooltip'));
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+  }
+};
+
+Blockly.JavaScript['garbage_ifElse'] = function(block) {
+  // Generate JavaScript for 'if/else' conditional if there is a path.
+  var argument = block.getFieldValue('DIR') +
+      '(\'block_id_' + block.id + '\')';
+  var branch0 = Blockly.JavaScript.statementToCode(block, 'DO');
+  var branch1 = Blockly.JavaScript.statementToCode(block, 'ELSE');
+  var code = 'if (' + argument + ') {\n' + branch0 +
+             '} else {\n' + branch1 + '}\n';
+  return code;
+};
+
+Blockly.Blocks['garbage_if_fwd'] = {
+  /**
+   * Block for 'if' conditional if there is a path.
+   * @this Blockly.Block
+   */
+  init: function() {
+    var DIRECTIONS =
+        [[BlocklyGames.getMsg('Chip_garbageHere'), 'isGarbageHere'],
+         [BlocklyGames.getMsg('Chip_garbageForward'), 'isGarbageForward'],
+         [BlocklyGames.getMsg('Chip_garbageBack'), 'isGarbageBack'],
+         [BlocklyGames.getMsg('Chip_garbageOnLeft'), 'isGarbageOnLeft'],
+         [BlocklyGames.getMsg('Chip_garbageOnRight'), 'isGarbageOnRight']];
+    // Append arrows to direction messages.
+    //DIRECTIONS[1][0] += Chip.Blocks.LEFT_TURN;
+    //DIRECTIONS[2][0] += Chip.Blocks.RIGHT_TURN;
+    this.setColour(Chip.Blocks.LOGIC_HUE);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown(DIRECTIONS), 'DIR');
+    this.appendStatementInput('DO')
+        .appendField(BlocklyGames.getMsg('Maze_doCode'));
+    this.setTooltip(BlocklyGames.getMsg('Maze_ifTooltip'));
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+  }
+};
+
+Blockly.JavaScript['garbage_if_fwd'] = function(block) {
+  // Generate JavaScript for 'if' conditional if there is a path.
+  var argument = block.getFieldValue('DIR') +
+      '(\'block_id_' + block.id + '\')';
+  var branch = Blockly.JavaScript.statementToCode(block, 'DO');
+  var code = 'if (' + argument + ') {\n' + branch + '}\n';
+  return code;
+};
+
+Blockly.Blocks['garbage_ifElse_fwd'] = {
+  /**
+   * Block for 'if/else' conditional if there is a path.
+   * @this Blockly.Block
+   */
+  init: function() {
+     var DIRECTIONS =
+        [[BlocklyGames.getMsg('Chip_garbageHere'), 'isGarbageHere'],
+         [BlocklyGames.getMsg('Chip_garbageForward'), 'isGarbageForward'],
+         [BlocklyGames.getMsg('Chip_garbageBack'), 'isGarbageBack'],
+         [BlocklyGames.getMsg('Chip_garbageOnLeft'), 'isGarbageOnLeft'],
+         [BlocklyGames.getMsg('Chip_garbageOnRight'), 'isGarbageOnRight']];
+    this.setColour(Chip.Blocks.LOGIC_HUE);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown(DIRECTIONS), 'DIR');
+    this.appendStatementInput('DO')
+        .appendField(BlocklyGames.getMsg('Maze_doCode'));
+    this.appendStatementInput('ELSE')
+        .appendField(BlocklyGames.getMsg('Maze_elseCode'));
+    this.setTooltip(BlocklyGames.getMsg('Maze_ifelseTooltip'));
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+  }
+};
+
+Blockly.JavaScript['garbage_ifElse_fwd'] = function(block) {
   // Generate JavaScript for 'if/else' conditional if there is a path.
   var argument = block.getFieldValue('DIR') +
       '(\'block_id_' + block.id + '\')';
