@@ -23,17 +23,17 @@
 // */
 //'use strict';
 //
-goog.provide('Variables');
+goog.provide('Conditional');
 
 goog.require("Chip");
 goog.require("Chip.Blocks");
-goog.require('Variables.soy');
+goog.require('Conditional.soy');
 
 // the chip.js and chip-block.js are not repeated in each folder, they are
 // symbolic links. It is a quick-and-dirty way for sharing the maze interpreter
 // among all levels. 
 
-app = Variables;
+app = Conditional;
 
 // configure mazes for Variables lesson
 
@@ -53,6 +53,15 @@ Chip.map = [
   [0, 2, 1, 4, 4, 1, 3, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0]],
+// Level 1b.
+ [[0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 2, 1, 4, 4, 1, 3, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
@@ -157,6 +166,6 @@ Chip.MAZE_WIDTH = Chip.SQUARE_SIZE * Chip.COLS;
 Chip.MAZE_HEIGHT = Chip.SQUARE_SIZE * Chip.ROWS;
 Chip.PATH_WIDTH = Chip.SQUARE_SIZE / 3;
 
-
+BlocklyGames.MAX_LEVEL = 20;
 
 window.addEventListener('load', Chip.init);

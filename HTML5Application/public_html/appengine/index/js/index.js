@@ -82,7 +82,10 @@ Index.init = function() {
     } else {
       // Remove gauge if zero, since IE renders a stub.
       var path = document.getElementById('gauge-' + app);
-      path.parentNode.removeChild(path);
+      if(path != null){
+	path.parentNode.removeChild(path);
+      }
+      
     }
   }
 };

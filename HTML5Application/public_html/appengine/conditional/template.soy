@@ -1,4 +1,4 @@
-{namespace Variables.soy}
+{namespace Conditional.soy}
 
 /**
  * This is a Closure Template.
@@ -69,12 +69,12 @@
         <h1>
           {call BlocklyGames.soy.titleSpan}
             {param appName}
-              Variabili
+              Istruzioni Condizionali
             {/param}
           {/call}
           {call BlocklyGames.soy.levelLinks}
             {param level: $ij.level /}
-            {param maxLevel: $ij.maxLevel /}
+            {param maxLevel: 20 /}
             {param lang: $ij.lang /}
             {param suffix}&skin={$ij.skin}{/param}
           {/call}

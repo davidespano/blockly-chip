@@ -2,7 +2,7 @@
 # Definitions
 ##############################
 
-USER_APPS = {index,puzzle,maze,bird,turtle,movie,pond/docs,pond/tutor,pond/duck, variables}
+USER_APPS = {index,variables,conditional}
 ALL_JSON = {./,index,puzzle,maze,bird,turtle,movie,pond/docs,pond,pond/tutor,pond/duck, variables}
 ALL_TEMPLATES = appengine/template.soy,appengine/index/template.soy,appengine/puzzle/template.soy,appengine/maze/template.soy,appengine/bird/template.soy,appengine/turtle/template.soy,appengine/movie/template.soy,appengine/pond/docs/template.soy,appengine/pond/template.soy,appengine/pond/tutor/template.soy,appengine/pond/duck/template.soy,appengine/variables/template.soy
 
@@ -16,59 +16,6 @@ SOY_EXTRACTOR = java -jar third-party/SoyMsgExtractor.jar
 
 all: deps languages
 
-index-en:
-	mkdir -p appengine/generated/en/
-	$(SOY_COMPILER) --outputPathFormat appengine/index/generated/en/soy.js --srcs appengine/index/template.soy
-	python build-app.py index en
-
-puzzle-en: common-en
-	$(SOY_COMPILER) --outputPathFormat appengine/puzzle/generated/en/soy.js --srcs appengine/puzzle/template.soy
-	python build-app.py puzzle en
-
-maze-en: common-en
-	$(SOY_COMPILER) --outputPathFormat appengine/maze/generated/en/soy.js --srcs appengine/maze/template.soy
-	python build-app.py maze en
-
-variables-en: common-en
-	$(SOY_COMPILER) --outputPathFormat appengine/variables/generated/en/soy.js --srcs appengine/variables/template.soy
-	python build-app.py variables en
-
-bird-en: common-en
-	$(SOY_COMPILER) --outputPathFormat appengine/bird/generated/en/soy.js --srcs appengine/bird/template.soy
-	python build-app.py bird en
-
-turtle-en: common-en
-	$(SOY_COMPILER) --outputPathFormat appengine/turtle/generated/en/soy.js --srcs appengine/turtle/template.soy
-	python build-app.py turtle en
-
-movie-en: common-en
-	$(SOY_COMPILER) --outputPathFormat appengine/movie/generated/en/soy.js --srcs appengine/movie/template.soy
-	python build-app.py movie en
-
-pond-docs-en:
-	mkdir -p appengine/pond/generated/en/
-	$(SOY_COMPILER) --outputPathFormat appengine/pond/docs/generated/en/soy.js --srcs appengine/pond/docs/template.soy
-	python build-app.py pond/docs en
-
-pond-tutor-en: pond-common-en
-	$(SOY_COMPILER) --outputPathFormat appengine/pond/tutor/generated/en/soy.js --srcs appengine/pond/tutor/template.soy
-	python build-app.py pond/tutor en
-
-pond-duck-en: pond-common-en
-	$(SOY_COMPILER) --outputPathFormat appengine/pond/duck/generated/en/soy.js --srcs appengine/pond/duck/template.soy
-	python build-app.py pond/duck en
-
-genetics-en: common-en
-	$(SOY_COMPILER) --outputPathFormat appengine/genetics/generated/en/soy.js --srcs appengine/genetics/template.soy
-	python build-app.py genetics en
-
-pond-common-en: common-en
-	$(SOY_COMPILER) --outputPathFormat appengine/pond/generated/en/soy.js --srcs appengine/pond/template.soy
-
-common-en:
-	$(SOY_COMPILER) --outputPathFormat appengine/generated/en/soy.js --srcs appengine/template.soy
-
-en: index-en puzzle-en maze-en bird-en turtle-en movie-en pond-docs-en pond-tutor-en pond-duck-en genetics-en
 
 # [davide] target per la compilazione in italiano
 index-it:
@@ -87,6 +34,10 @@ maze-it: common-it
 variables-it: common-it
 	$(SOY_COMPILER) --outputPathFormat appengine/variables/generated/it/soy.js --srcs appengine/variables/template.soy
 	python build-app.py variables it
+
+conditional-it: common-it
+	$(SOY_COMPILER) --outputPathFormat appengine/conditional/generated/it/soy.js --srcs appengine/conditional/template.soy
+	python build-app.py conditional it
 
 bird-it: common-it
 	$(SOY_COMPILER) --outputPathFormat appengine/bird/generated/it/soy.js --srcs appengine/bird/template.soy
@@ -125,7 +76,7 @@ common-it:
 
 #it: index-it puzzle-it maze-it bird-it turtle-it movie-it pond-docs-it pond-tutor-it pond-duck-it genetics-it
 
-it: index-it puzzle-it maze-it variables-it
+it: index-it chip-it puzzle-it maze-it variables-it conditional-it
 
 # [davide] fine modifiche
 languages:

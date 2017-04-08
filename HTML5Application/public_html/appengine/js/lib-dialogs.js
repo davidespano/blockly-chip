@@ -319,10 +319,11 @@ BlocklyDialogs.abortOffer = function() {
   }
   // Don't override an existing dialog, or interrupt a drag.
   if (BlocklyDialogs.isDialogVisible_ || Blockly.dragMode_ != 0) {
-    setTimeout(BlocklyDialogs.abortOffer, 15 * 1000);
+    //setTimeout(BlocklyDialogs.abortOffer, 15 * 1000);
     return;
   }
 
+  return;
   var content = document.getElementById('dialogAbort');
   var style = {
     width: '40%',
