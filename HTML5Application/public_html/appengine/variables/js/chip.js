@@ -350,6 +350,14 @@ Chip.drawMap = function () {
     svg.appendChild(pegmanIcon);
 };
 
+Chip.onInit = function () {
+
+};
+
+Chip.onResize = function(){
+    
+}
+
 /**
  * Initialize Blockly and the maze.  Called on page load.
  */
@@ -407,6 +415,7 @@ Chip.init = function () {
         blocklyDiv.style.top = Math.max(10, top - window.pageYOffset) + 'px';
         blocklyDiv.style.left = rtl ? '10px' : '420px';
         blocklyDiv.style.width = (window.innerWidth - 440) + 'px';
+        Chip.onResize();
     };
     window.addEventListener('scroll', function () {
         onresize();
@@ -501,9 +510,7 @@ Chip.init = function () {
     Chip.onInit();
 };
 
-Chip.onInit = function () {
 
-};
 
 /**
  * When the workspace changes, update the help as needed.

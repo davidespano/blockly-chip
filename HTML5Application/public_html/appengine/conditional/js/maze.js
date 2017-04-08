@@ -268,10 +268,37 @@ Chip.PATH_WIDTH = Chip.SQUARE_SIZE / 3;
 
 BlocklyGames.MAX_LEVEL = 20;
 
+Chip.onResize = function(){
+    if(BlocklyGames.LEVEL % 2 === 0){
+         var blocklyDiv = document.getElementById('blockly');
+         var el = document.getElementById('stopInteraction');
+         if(el){
+            el.style.width =  '' + blocklyDiv.clientWidth + 'px';
+            el.style.height ='' + blocklyDiv.clientHeight + 'px';
+         }
+         
+    }
+};
+
+
 Chip.onInit = function(){
     if(BlocklyGames.LEVEL % 2 === 0){
         // in this lesson we do not use a flyout on even levels
-        Blockly.mainWorkspace.getFlyout_().hide()
+        Blockly.mainWorkspace.getFlyout_().hide();
+        
+        // disable interaction with the workspace
+        var el = document.createElement('div');
+        var blocklyDiv = document.getElementById('blockly');
+        el.class = 'blocklyWorkspace';
+        el.id = 'stopInteraction'
+        el.style.zIndex = 10;
+        el.style.position = 'absolute';
+        el.style.width =  '' + blocklyDiv.clientWidth + 'px';
+        el.style.height ='' + blocklyDiv.clientHeight + 'px';
+        
+        
+        blocklyDiv.insertBefore(el, blocklyDiv.firstChild);
+        
         
         // load last maze solution
         var restore = BlocklyGames.loadFromLocalStorage(
