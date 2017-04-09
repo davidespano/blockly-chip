@@ -32,79 +32,79 @@ goog.require('goog.math');
  * Lookup for names of languages.  Keys should be in ISO 639 format.
  */
 BlocklyGames.LANGUAGE_NAME = {
-  'ace': 'بهسا اچيه',
-  'af': 'Afrikaans',
-  'ar': 'العربية',
-  'az': 'Azərbaycanca',
-  'be-tarask': 'Taraškievica',
-  'bg': 'български език',
-  'br': 'Brezhoneg',
-  'ca': 'Català',
-  'cdo': '閩東語',
-  'cs': 'Česky',
-  'da': 'Dansk',
-  'de': 'Deutsch',
-  'el': 'Ελληνικά',
-  'en': 'English',
-  'es': 'Español',
-  'eu': 'Euskara',
-  'fa': 'فارسی',
-  'fi': 'Suomi',
-  'fo': 'Føroyskt',
-  'fr': 'Français',
-  'frr': 'Frasch',
-  'gl': 'Galego',
-  'hak': '客家話',
-  'he': 'עברית',
-  'hi': 'हिन्दी',
-  'hrx': 'Hunsrik',
-  'hu': 'Magyar',
-  'ia': 'Interlingua',
-  'id': 'Bahasa Indonesia',
-  'is': 'Íslenska',
-  'it': 'Italiano',
-  'ja': '日本語',
-  'ka': 'ქართული',
-  'km': 'ភាសាខ្មែរ',
-  'ko': '한국어',
-  'ksh': 'Ripoarėsch',
-  'ky': 'Кыргызча',
-  'la': 'Latine',
-  'lb': 'Lëtzebuergesch',
-  'lt': 'Lietuvių',
-  'lv': 'Latviešu',
-  'mg': 'Malagasy',
-  'ml': 'മലയാളം',
-  'mk': 'Македонски',
-  'mr': 'मराठी',
-  'ms': 'Bahasa Melayu',
-  'mzn': 'مازِرونی',
-  'nb': 'Norsk Bokmål',
-  'nl': 'Nederlands, Vlaams',
-  'oc': 'Lenga d\'òc',
-  'pa': 'पंजाबी',
-  'pl': 'Polski',
-  'pms': 'Piemontèis',
-  'ps': 'پښتو',
-  'pt': 'Português',
-  'pt-br': 'Português Brasileiro',
-  'ro': 'Română',
-  'ru': 'Русский',
-  'sc': 'Sardu',
-  'sco': 'Scots',
-  'si': 'සිංහල',
-  'sk': 'Slovenčina',
-  'sr': 'Српски',
-  'sv': 'Svenska',
-  'sw': 'Kishwahili',
-  'ta': 'தமிழ்',
-  'th': 'ภาษาไทย',
-  'tl': 'Tagalog',
-  'tr': 'Türkçe',
-  'uk': 'Українська',
-  'vi': 'Tiếng Việt',
-  'zh-hans': '簡體中文',
-  'zh-hant': '正體中文'
+    'ace': 'بهسا اچيه',
+    'af': 'Afrikaans',
+    'ar': 'العربية',
+    'az': 'Azərbaycanca',
+    'be-tarask': 'Taraškievica',
+    'bg': 'български език',
+    'br': 'Brezhoneg',
+    'ca': 'Català',
+    'cdo': '閩東語',
+    'cs': 'Česky',
+    'da': 'Dansk',
+    'de': 'Deutsch',
+    'el': 'Ελληνικά',
+    'en': 'English',
+    'es': 'Español',
+    'eu': 'Euskara',
+    'fa': 'فارسی',
+    'fi': 'Suomi',
+    'fo': 'Føroyskt',
+    'fr': 'Français',
+    'frr': 'Frasch',
+    'gl': 'Galego',
+    'hak': '客家話',
+    'he': 'עברית',
+    'hi': 'हिन्दी',
+    'hrx': 'Hunsrik',
+    'hu': 'Magyar',
+    'ia': 'Interlingua',
+    'id': 'Bahasa Indonesia',
+    'is': 'Íslenska',
+    'it': 'Italiano',
+    'ja': '日本語',
+    'ka': 'ქართული',
+    'km': 'ភាសាខ្មែរ',
+    'ko': '한국어',
+    'ksh': 'Ripoarėsch',
+    'ky': 'Кыргызча',
+    'la': 'Latine',
+    'lb': 'Lëtzebuergesch',
+    'lt': 'Lietuvių',
+    'lv': 'Latviešu',
+    'mg': 'Malagasy',
+    'ml': 'മലയാളം',
+    'mk': 'Македонски',
+    'mr': 'मराठी',
+    'ms': 'Bahasa Melayu',
+    'mzn': 'مازِرونی',
+    'nb': 'Norsk Bokmål',
+    'nl': 'Nederlands, Vlaams',
+    'oc': 'Lenga d\'òc',
+    'pa': 'पंजाबी',
+    'pl': 'Polski',
+    'pms': 'Piemontèis',
+    'ps': 'پښتو',
+    'pt': 'Português',
+    'pt-br': 'Português Brasileiro',
+    'ro': 'Română',
+    'ru': 'Русский',
+    'sc': 'Sardu',
+    'sco': 'Scots',
+    'si': 'සිංහල',
+    'sk': 'Slovenčina',
+    'sr': 'Српски',
+    'sv': 'Svenska',
+    'sw': 'Kishwahili',
+    'ta': 'தமிழ்',
+    'th': 'ภาษาไทย',
+    'tl': 'Tagalog',
+    'tr': 'Türkçe',
+    'uk': 'Українська',
+    'vi': 'Tiếng Việt',
+    'zh-hans': '簡體中文',
+    'zh-hant': '正體中文'
 };
 
 /**
@@ -143,10 +143,10 @@ BlocklyGames.workspace = null;
  * @param {string} defaultValue Value to return if paramater not found.
  * @return {string} The parameter value or the default value if not found.
  */
-BlocklyGames.getStringParamFromUrl = function(name, defaultValue) {
-  var val =
-      window.location.search.match(new RegExp('[?&]' + name + '=([^&]+)'));
-  return val ? decodeURIComponent(val[1].replace(/\+/g, '%20')) : defaultValue;
+BlocklyGames.getStringParamFromUrl = function (name, defaultValue) {
+    var val =
+            window.location.search.match(new RegExp('[?&]' + name + '=([^&]+)'));
+    return val ? decodeURIComponent(val[1].replace(/\+/g, '%20')) : defaultValue;
 };
 
 /**
@@ -158,17 +158,17 @@ BlocklyGames.getStringParamFromUrl = function(name, defaultValue) {
  * @param {number} maxValue The maximum legal value.
  * @return {number} A number in the range [min_value, max_value].
  */
-BlocklyGames.getNumberParamFromUrl = function(name, minValue, maxValue) {
-  var val = Number(BlocklyGames.getStringParamFromUrl(name, 'NaN'));
-  return isNaN(val) ? minValue : goog.math.clamp(minValue, val, maxValue);
+BlocklyGames.getNumberParamFromUrl = function (name, minValue, maxValue) {
+    var val = Number(BlocklyGames.getStringParamFromUrl(name, 'NaN'));
+    return isNaN(val) ? minValue : goog.math.clamp(minValue, val, maxValue);
 };
 
 /**
  * Is the current language (BlocklyGames.LANG) an RTL language?
  * @return {boolean} True if RTL, false if LTR.
  */
-BlocklyGames.isRtl = function() {
-  return BlocklyGames.LANGUAGE_RTL.indexOf(BlocklyGames.LANG) != -1;
+BlocklyGames.isRtl = function () {
+    return BlocklyGames.LANGUAGE_RTL.indexOf(BlocklyGames.LANG) != -1;
 };
 
 /**
@@ -185,90 +185,92 @@ BlocklyGames.MAX_LEVEL = MAX_LEVELS;
  * User's level (e.g. 5).
  */
 BlocklyGames.LEVEL =
-    BlocklyGames.getNumberParamFromUrl('level', 1, BlocklyGames.MAX_LEVEL);
+        BlocklyGames.getNumberParamFromUrl('level', 1, BlocklyGames.MAX_LEVEL);
 
 /**
  * Common startup tasks for all apps.
  */
-BlocklyGames.init = function() {
-  // Set the page title with the content of the H1 title.
-  document.title = document.getElementById('title').textContent;
+BlocklyGames.init = function () {
+    // Set the page title with the content of the H1 title.
+    document.title = document.getElementById('title').textContent;
 
-  // Set the HTML's language and direction.
-  var rtl = BlocklyGames.isRtl();
-  document.dir = rtl ? 'rtl' : 'ltr';
-  document.head.parentElement.setAttribute('lang', BlocklyGames.LANG);
+    // Set the HTML's language and direction.
+    var rtl = BlocklyGames.isRtl();
+    document.dir = rtl ? 'rtl' : 'ltr';
+    document.head.parentElement.setAttribute('lang', BlocklyGames.LANG);
 
-  // Populate the language selection menu.
-  var languageMenu = document.getElementById('languageMenu');
-  if (languageMenu) {
-    // Sort languages alphabetically.
-    var languages = [];
-    for (var i = 0; i < BlocklyGames.LANGUAGES.length; i++) {
-      var lang = BlocklyGames.LANGUAGES[i];
-      languages.push([BlocklyGames.LANGUAGE_NAME[lang], lang]);
+    // Populate the language selection menu.
+    var languageMenu = document.getElementById('languageMenu');
+    if (languageMenu) {
+        // Sort languages alphabetically.
+        var languages = [];
+        for (var i = 0; i < BlocklyGames.LANGUAGES.length; i++) {
+            var lang = BlocklyGames.LANGUAGES[i];
+            languages.push([BlocklyGames.LANGUAGE_NAME[lang], lang]);
+        }
+        var comp = function (a, b) {
+            // Sort based on first argument ('English', 'Русский', '简体字', etc).
+            if (a[0] > b[0])
+                return 1;
+            if (a[0] < b[0])
+                return -1;
+            return 0;
+        };
+        languages.sort(comp);
+        languageMenu.options.length = 0;
+        for (var i = 0; i < languages.length; i++) {
+            var tuple = languages[i];
+            var lang = tuple[1];
+            var option = new Option(tuple[0], lang);
+            if (lang == BlocklyGames.LANG) {
+                option.selected = true;
+            }
+            languageMenu.options.add(option);
+        }
+        if (languageMenu.options.length <= 1) {
+            // No choices.  Hide the language menu.
+            languageMenu.style.display = 'none';
+        }
     }
-    var comp = function(a, b) {
-      // Sort based on first argument ('English', 'Русский', '简体字', etc).
-      if (a[0] > b[0]) return 1;
-      if (a[0] < b[0]) return -1;
-      return 0;
-    };
-    languages.sort(comp);
-    languageMenu.options.length = 0;
-    for (var i = 0; i < languages.length; i++) {
-      var tuple = languages[i];
-      var lang = tuple[1];
-      var option = new Option(tuple[0], lang);
-      if (lang == BlocklyGames.LANG) {
-        option.selected = true;
-      }
-      languageMenu.options.add(option);
-    }
-    if (languageMenu.options.length <= 1) {
-      // No choices.  Hide the language menu.
-      languageMenu.style.display = 'none';
-    }
-  }
 
-  // Highlight levels that have been completed.
-  for (var i = 1; i <= BlocklyGames.MAX_LEVEL; i++) {
-    var link = document.getElementById('level' + i);
-    var done = !!BlocklyGames.loadFromLocalStorage(BlocklyGames.NAME, i);
-    if (link && done) {
-      goog.dom.classes.add(link, 'level_done');
+    // Highlight levels that have been completed.
+    for (var i = 1; i <= BlocklyGames.MAX_LEVEL; i++) {
+        var link = document.getElementById('level' + i);
+        var done = !!BlocklyGames.loadFromLocalStorage(BlocklyGames.NAME, i);
+        if (link && done) {
+            goog.dom.classes.add(link, 'level_done');
+        }
     }
-  }
 
-  // Fixes viewport for small screens.
-  var viewport = document.querySelector('meta[name="viewport"]');
-  if (viewport && screen.availWidth < 725) {
-    viewport.setAttribute('content',
-        'width=725, initial-scale=.35, user-scalable=no');
-  }
+    // Fixes viewport for small screens.
+    var viewport = document.querySelector('meta[name="viewport"]');
+    if (viewport && screen.availWidth < 725) {
+        viewport.setAttribute('content',
+                'width=725, initial-scale=.35, user-scalable=no');
+    }
 
-  // Lazy-load Google analytics.
-  setTimeout(BlocklyGames.importAnalytics, 1);
+    // Lazy-load Google analytics.
+    setTimeout(BlocklyGames.importAnalytics, 1);
 };
 
 /**
  * Reload with a different language.
  */
-BlocklyGames.changeLanguage = function() {
-  var languageMenu = document.getElementById('languageMenu');
-  var newLang = encodeURIComponent(
-      languageMenu.options[languageMenu.selectedIndex].value);
-  var search = window.location.search;
-  if (search.length <= 1) {
-    search = '?lang=' + newLang;
-  } else if (search.match(/[?&]lang=[^&]*/)) {
-    search = search.replace(/([?&]lang=)[^&]*/, '$1' + newLang);
-  } else {
-    search = search.replace(/\?/, '?lang=' + newLang + '&');
-  }
+BlocklyGames.changeLanguage = function () {
+    var languageMenu = document.getElementById('languageMenu');
+    var newLang = encodeURIComponent(
+            languageMenu.options[languageMenu.selectedIndex].value);
+    var search = window.location.search;
+    if (search.length <= 1) {
+        search = '?lang=' + newLang;
+    } else if (search.match(/[?&]lang=[^&]*/)) {
+        search = search.replace(/([?&]lang=)[^&]*/, '$1' + newLang);
+    } else {
+        search = search.replace(/\?/, '?lang=' + newLang + '&');
+    }
 
-  window.location = window.location.protocol + '//' +
-      window.location.host + window.location.pathname + search;
+    window.location = window.location.protocol + '//' +
+            window.location.host + window.location.pathname + search;
 };
 
 /**
@@ -278,15 +280,15 @@ BlocklyGames.changeLanguage = function() {
  * @param {number} level Level (1-10).
  * @return {string|undefined} Serialized XML, or undefined.
  */
-BlocklyGames.loadFromLocalStorage = function(name, level) {
-  var xml;
-  try {
-    xml = window.localStorage[name + level];
-  } catch (e) {
-    // Firefox sometimes throws a SecurityError when accessing localStorage.
-    // Restarting Firefox fixes this, so it looks like a bug.
-  }
-  return xml;
+BlocklyGames.loadFromLocalStorage = function (name, level) {
+    var xml;
+    try {
+        xml = window.localStorage[name + level];
+    } catch (e) {
+        // Firefox sometimes throws a SecurityError when accessing localStorage.
+        // Restarting Firefox fixes this, so it looks like a bug.
+    }
+    return xml;
 };
 
 
@@ -296,9 +298,9 @@ BlocklyGames.loadFromLocalStorage = function(name, level) {
  * @return {string} The textContent of the specified element,
  *     or an error message if the element was not found.
  */
-BlocklyGames.getMsg = function(key) {
-  var msg = BlocklyGames.getMsgOrNull(key);
-  return msg === null ? '[Unknown message: ' + key + ']' : msg;
+BlocklyGames.getMsg = function (key) {
+    var msg = BlocklyGames.getMsgOrNull(key);
+    return msg === null ? '[Unknown message: ' + key + ']' : msg;
 };
 
 /**
@@ -307,16 +309,16 @@ BlocklyGames.getMsg = function(key) {
  * @return {string} The textContent of the specified element,
  *     or null if the element was not found.
  */
-BlocklyGames.getMsgOrNull = function(key) {
-  var element = document.getElementById(key);
-  if (element) {
-    var text = element.textContent;
-    // Convert newline sequences.
-    text = text.replace(/\\n/g, '\n');
-    return text;
-  } else {
-    return null;
-  }
+BlocklyGames.getMsgOrNull = function (key) {
+    var element = document.getElementById(key);
+    if (element) {
+        var text = element.textContent;
+        // Convert newline sequences.
+        text = text.replace(/\\n/g, '\n');
+        return text;
+    } else {
+        return null;
+    }
 };
 
 /**
@@ -325,34 +327,57 @@ BlocklyGames.getMsgOrNull = function(key) {
  * @param {!Element|string} el Button element or ID thereof.
  * @param {!Function} func Event handler to bind.
  */
-BlocklyGames.bindClick = function(el, func) {
-  if (typeof el == 'string') {
-    el = document.getElementById(el);
-  }
-  el.addEventListener('click', func, true);
-  el.addEventListener('touchend', func, true);
+BlocklyGames.bindClick = function (el, func) {
+    if (typeof el == 'string') {
+        el = document.getElementById(el);
+    }
+    el.addEventListener('click', func, true);
+    el.addEventListener('touchend', func, true);
 };
 
 
 /**
  * Load the Google Analytics.
  */
-BlocklyGames.importAnalytics = function() {
-  if (BlocklyGames.IS_HTML) {
-    return;
-  }
-  var gaName = 'GoogleAnalyticsFunction';
-  window['GoogleAnalyticsObject'] = gaName;
-  var gaObject = function() {
-    (gaObject['q'] = gaObject['q'] || []).push(arguments);
-  };
-  window[gaName] = gaObject;
-  gaObject['l'] = 1 * new Date();
-  var script = document.createElement('script');
-  script.async = 1;
-  script.src = '//www.google-analytics.com/analytics.js';
-  document.head.appendChild(script);
+BlocklyGames.importAnalytics = function () {
+    if (BlocklyGames.IS_HTML) {
+        return;
+    }
+    var gaName = 'GoogleAnalyticsFunction';
+    window['GoogleAnalyticsObject'] = gaName;
+    var gaObject = function () {
+        (gaObject['q'] = gaObject['q'] || []).push(arguments);
+    };
+    window[gaName] = gaObject;
+    gaObject['l'] = 1 * new Date();
+    var script = document.createElement('script');
+    script.async = 1;
+    script.src = '//www.google-analytics.com/analytics.js';
+    document.head.appendChild(script);
 
-  gaObject('create', 'UA-50448074-1', 'auto');
-  gaObject('send', 'pageview');
+    gaObject('create', 'UA-50448074-1', 'auto');
+    gaObject('send', 'pageview');
+};
+
+/**
+ * IE 5.5+, Firefox, Opera, Chrome, Safari XHR object
+ * 
+ * @param string url
+ * @param object callback
+ * @param mixed data
+ * @param null x
+ */
+BlocklyGames.ajax = function (url, callback, data, x) {
+    try {
+        x = new (XMLHttpRequest || ActiveXObject)('MSXML2.XMLHTTP.3.0');
+        x.open(data ? 'POST' : 'GET', url, 1);
+        x.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        x.onreadystatechange = function () {
+            x.readyState > 3 && callback && callback(x.responseText, x);
+        };
+        x.send(data)
+    } catch (e) {
+        window.console && console.log(e);
+    }
 };

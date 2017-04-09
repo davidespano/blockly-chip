@@ -533,6 +533,18 @@ Chip.changePegman = function (newSkin) {
             '&skin=' + newSkin;
 };
 
+Chip.updateServer = function(){
+    var xml = Blockly.Xml.workspaceToDom(BlocklyGames.workspace);
+    var text = Blockly.Xml.domToText(xml);
+    BlocklyGames.ajax(
+                "/blockly-chip/HTML5Application/public_html/appengine/server/logger.php",
+                function(){console.log('soluzione inviata');},
+                "app=" + appId +
+                "&level="+ BlocklyGames.LEVEL + 
+                "&solution=" + text 
+        );
+};
+
 /**
  * Save the blocks for a one-time reload.
  */
@@ -542,6 +554,8 @@ Chip.saveToStorage = function () {
         var xml = Blockly.Xml.workspaceToDom(BlocklyGames.workspace);
         var text = Blockly.Xml.domToText(xml);
         window.sessionStorage.loadOnceBlocks = text;
+        
+        
     }
 };
 
@@ -1025,6 +1039,7 @@ Chip.animate = function () {
         case 'finish':
             Chip.scheduleFinish(true);
             BlocklyInterface.saveToLocalStorage();
+            Chip.updateServer();
             setTimeout(BlocklyDialogs.congratulations, 1000);
             break;
         case 'update_direction':

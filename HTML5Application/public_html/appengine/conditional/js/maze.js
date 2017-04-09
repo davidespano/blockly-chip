@@ -34,6 +34,7 @@ goog.require('Conditional.soy');
 // among all levels. 
 
 app = Conditional;
+appId = 2;
 
 // configure mazes for Variables lesson
 

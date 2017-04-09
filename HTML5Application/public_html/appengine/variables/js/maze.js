@@ -34,6 +34,7 @@ goog.require('Variables.soy');
 // among all levels. 
 
 app = Variables;
+appId = 1;
 
 // configure mazes for Variables lesson
 
