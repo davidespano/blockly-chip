@@ -18,6 +18,7 @@ class FrontController {
         
         if(     isset($request["level"]) && 
                 isset($request["solution"]) &&
+                isset($request["solved"]) &&
                 isset($request["app"])){
             $mysqli = FrontController::connectDb();
             
@@ -28,8 +29,8 @@ class FrontController {
             }
             
             $query = "insert into soluzioni 
-                            (id, data, soluzione, livello, app, session)
-                    values  (default, default, ?, ?, ?, ?)";
+                            (id, data, soluzione, livello, app, risolto, session)
+                    values  (default, default, ?, ?, ?, ?, ?)";
             
             $stmt = $mysqli->stmt_init();
             $stmt->prepare($query);
@@ -40,10 +41,11 @@ class FrontController {
                 return;
             }
             
-            if (!$stmt->bind_param('siis', 
+            if (!$stmt->bind_param('siiis', 
                     $request["solution"],
                     filter_var($request['level'], FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE),
                     filter_var($request['app'], FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE),
+                    filter_var($request['solved'], FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE),
                     session_id())) {
                 error_log("[logger] impossibile effettuare il binding");
                 $mysqli->close();

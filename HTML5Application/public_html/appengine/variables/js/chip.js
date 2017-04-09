@@ -533,7 +533,7 @@ Chip.changePegman = function (newSkin) {
             '&skin=' + newSkin;
 };
 
-Chip.updateServer = function(){
+Chip.updateServer = function(solved){
     var xml = Blockly.Xml.workspaceToDom(BlocklyGames.workspace);
     var text = Blockly.Xml.domToText(xml);
     BlocklyGames.ajax(
@@ -541,6 +541,7 @@ Chip.updateServer = function(){
                 function(){console.log('soluzione inviata');},
                 "app=" + appId +
                 "&level="+ BlocklyGames.LEVEL + 
+                "&solved=" + (solved ? 1: 0) +
                 "&solution=" + text 
         );
 };
@@ -958,6 +959,7 @@ Chip.execute = function () {
         }
     }
 
+    Chip.updateServer(Chip.result == Chip.ResultType.SUCCESS);
     // Fast animation if execution is successful.  Slow otherwise.
     if (Chip.result == Chip.ResultType.SUCCESS) {
         Chip.stepSpeed = 100;
@@ -1039,7 +1041,6 @@ Chip.animate = function () {
         case 'finish':
             Chip.scheduleFinish(true);
             BlocklyInterface.saveToLocalStorage();
-            Chip.updateServer();
             setTimeout(BlocklyDialogs.congratulations, 1000);
             break;
         case 'update_direction':
