@@ -441,11 +441,15 @@ Chip.init = function () {
 
     Chip.drawMap();
 
-    var defaultXml =
+    if(!Chip.defaultXml){
+        var defaultXml =
             '<xml>' +
             '  <block movable="' + (BlocklyGames.LEVEL != 1) + '" ' +
             'type="maze_moveForward" x="70" y="70"></block>' +
             '</xml>';
+    }else{
+        defaultXml = Chip.defaultXml;
+    }
     BlocklyInterface.loadBlocks(defaultXml, false);
 
     // Locate the start and finish squares.

@@ -32,8 +32,9 @@ goog.require('Index.soy');
 /**
  * Array of application names.
  */
-Index.APPS = ['puzzle', 'maze', 'variables', 'turtle', 'movie',
-              'pond-tutor', 'pond-duck'];
+Index.APPS = ['variables', 'conditional'];
+Index.MAX_LEVEL = [10, 20];
+
 
 /**
  * Initialize Blockly and the maze.  Called on page load.
@@ -54,7 +55,7 @@ Index.init = function() {
   var levelsDone = [];
   for (var i = 0; i < Index.APPS.length; i++) {
     levelsDone[i] = 0;
-    for (var j = 1; j <= BlocklyGames.MAX_LEVEL; j++) {
+    for (var j = 1; j <= Index.MAX_LEVEL[i]; j++) {
       if (BlocklyGames.loadFromLocalStorage(Index.APPS[i], j)) {
         storedData = true;
         levelsDone[i]++;
@@ -75,7 +76,7 @@ Index.init = function() {
   }
   for (var i = 0; i < levelsDone.length; i++) {
     var app = Index.APPS[i];
-    var denominator = i == 0 ? 1 : BlocklyGames.MAX_LEVEL;
+    var denominator = i == 0 ? 1 : Index.MAX_LEVEL[i];
     var angle = levelsDone[i] / denominator * 270;
     if (angle) {
       setTimeout(animateFactory(app, angle), 1500);
