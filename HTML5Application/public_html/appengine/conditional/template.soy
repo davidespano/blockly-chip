@@ -210,7 +210,7 @@
       </td></tr></table>
     </div>
 
-    {elseif $ij.level == 11}
+    {elseif $ij.level == 13}
      <div id="dialogInit" class="dialogHiddenContent">
       <table><tr><td>
         <img src="common/help.png">
@@ -221,12 +221,32 @@
       </td></tr></table>
     </div>
 
-    {elseif $ij.level == 11}
+    {elseif $ij.level == 15}
      <div id="dialogInit" class="dialogHiddenContent">
       <table><tr><td>
         <img src="common/help.png">
       </td><td>&nbsp;</td><td>
 	Suggerimento: nel caso ci sia strada a sinistra, fai fare un passo avanti a Chip!
+        {call BlocklyGames.soy.ok /}
+      </td></tr></table>
+    </div>
+
+    {elseif $ij.level == 17}
+     <div id="dialogInit" class="dialogHiddenContent">
+      <table><tr><td>
+        <img src="common/help.png">
+      </td><td>&nbsp;</td><td>
+	Suggerimento: la direzione del percorso è indicata dai rifiuti!
+        {call BlocklyGames.soy.ok /}
+      </td></tr></table>
+    </div>
+
+    {elseif $ij.level == 19}
+     <div id="dialogInit" class="dialogHiddenContent">
+      <table><tr><td>
+        <img src="common/help.png">
+      </td><td>&nbsp;</td><td>
+	Suggerimento: per arrivare al traguardo Chip deve seguire delle tracce...
         {call BlocklyGames.soy.ok /}
       </td></tr></table>
     </div>
@@ -240,7 +260,10 @@
   <xml id="toolbox" style="display: none;">
     <block type="maze_moveForward"></block>
     <block type="variables_collect"></block>
-     
+
+    {if $ij.level == 1}
+        <block type="garbage_if"><field name="DIR">isGarbageHere</field></block>
+    {/if}
     
     {if $ij.level == 3}
         <block type="maze_turn"><field name="DIR">turnUp</field></block> 
@@ -278,6 +301,13 @@
         <block type="maze_ifElse_fwd"></block>
     {/if}
     {if $ij.level == 17}
+        <block type="maze_rotate"><field name="DIR">rotateLeft</field></block>
+        <block type="garbage_if_fwd"></block>
+        <block type="garbage_ifElse_fwd"></block>
+        <block type="maze_ifElse_fwd"></block>
+        <block type="maze_if_fwd"></block>
+    {/if}
+    {if $ij.level == 19}
         <block type="maze_rotate"><field name="DIR">rotateLeft</field></block>
         <block type="garbage_if_fwd"></block>
         <block type="garbage_ifElse_fwd"></block>

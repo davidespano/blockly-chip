@@ -74,7 +74,17 @@ pond-common-it: common-it
 common-it:
 	$(SOY_COMPILER) --outputPathFormat appengine/generated/it/soy.js --srcs appengine/template.soy
 
-#it: index-it puzzle-it maze-it bird-it turtle-it movie-it pond-docs-it pond-tutor-it pond-duck-it genetics-it
+links:
+	rm appengine/variables/js/chip.js; \
+	rm appengine/variables/js/chip-blocks.js; \
+	rm appengine/conditional/js/chip.js; \
+	rm appengine/conditional/js/chip-blocks.js; \
+	ln appengine/chip/js/chip.js appengine/variables/js; \
+	ln appengine/chip/js/chip-blocks.js appengine/variables/js; \
+	ln appengine/chip/js/chip.js appengine/conditional/js; \
+	ln appengine/chip/js/chip-blocks.js appengine/conditional/js
+
+#it: link index-it puzzle-it maze-it bird-it turtle-it movie-it pond-docs-it pond-tutor-it pond-duck-it genetics-it
 
 it: index-it chip-it puzzle-it maze-it variables-it conditional-it
 

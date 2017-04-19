@@ -33,6 +33,8 @@ goog.require('Chip.Blocks');
 
 BlocklyGames.NAME = 'variables';
 
+Chip.ajaxUrl = "/appengine/server/logger.php";
+
 /**
  * Go to the next level.
  * @suppress {duplicate}
@@ -541,7 +543,7 @@ Chip.updateServer = function(solved){
     var xml = Blockly.Xml.workspaceToDom(BlocklyGames.workspace);
     var text = Blockly.Xml.domToText(xml);
     BlocklyGames.ajax(
-                "/blockly-chip/HTML5Application/public_html/appengine/server/logger.php",
+                Chip.ajaxUrl,
                 function(){console.log('soluzione inviata');},
                 "app=" + appId +
                 "&level="+ BlocklyGames.LEVEL + 
