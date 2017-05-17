@@ -8,8 +8,8 @@ FrontController::dispatch($_REQUEST);
 
 class FrontController {
     public static $db_host = 'localhost';
-    public static $db_user = 'chip-server';
-    public static $db_password = 'caic89900e';
+    public static $db_user = 'davide';
+    public static $db_password = 'chip2017';
     public static $db_name = 'chip';
     
     

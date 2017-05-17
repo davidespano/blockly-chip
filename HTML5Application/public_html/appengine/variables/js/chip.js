@@ -33,7 +33,8 @@ goog.require('Chip.Blocks');
 
 BlocklyGames.NAME = 'variables';
 
-Chip.ajaxUrl = "/appengine/server/logger.php";
+//Chip.ajaxUrl = "/appengine/server/logger.php";
+Chip.ajaxUrl = "/server/logger.php"
 
 /**
  * Go to the next level.
@@ -44,7 +45,8 @@ BlocklyInterface.nextLevel = function () {
         window.location = window.location.protocol + '//' +
                 window.location.host + window.location.pathname +
                 '?lang=' + BlocklyGames.LANG + '&level=' + (BlocklyGames.LEVEL + 1) +
-                '&skin=' + Chip.SKIN_ID;
+                '&skin=' + Chip.SKIN_ID +
+                '&diff=' + window['BlocklyGamesDiff'];
     } else {
         BlocklyInterface.indexPage();
     }
@@ -370,7 +372,8 @@ Chip.init = function () {
                 level: BlocklyGames.LEVEL,
                 maxLevel: BlocklyGames.MAX_LEVEL,
                 skin: Chip.SKIN_ID,
-                html: BlocklyGames.IS_HTML});
+                html: BlocklyGames.IS_HTML,
+                diff: window['BlocklyGamesDiff']});
 
     BlocklyInterface.init();
 

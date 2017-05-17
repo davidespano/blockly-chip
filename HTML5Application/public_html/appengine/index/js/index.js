@@ -32,7 +32,7 @@ goog.require('Index.soy');
 /**
  * Array of application names.
  */
-Index.APPS = ['variables', 'conditional'];
+Index.APPS = ['Variables', 'conditional'];
 Index.MAX_LEVEL = [10, 20];
 
 
@@ -76,7 +76,7 @@ Index.init = function() {
   }
   for (var i = 0; i < levelsDone.length; i++) {
     var app = Index.APPS[i];
-    var denominator = i == 0 ? 1 : Index.MAX_LEVEL[i];
+    var denominator = Index.MAX_LEVEL[i];
     var angle = levelsDone[i] / denominator * 270;
     if (angle) {
       setTimeout(animateFactory(app, angle), 1500);

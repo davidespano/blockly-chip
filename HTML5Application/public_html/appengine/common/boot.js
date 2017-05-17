@@ -58,7 +58,11 @@
     }
   }
   window['BlocklyGamesLang'] = lang;
-
+  
+  param = window.location.search.match(/[?&]diff=([^&]+)/);
+  var diff = param ? param[1].replace(/\+/g, '%20') : null;
+  window['BlocklyGamesDiff'] = diff;
+  
   // Load the chosen language pack.
   var script = document.createElement('script');
   var debug = false;
