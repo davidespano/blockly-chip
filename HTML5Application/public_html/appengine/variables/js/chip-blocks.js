@@ -469,3 +469,35 @@ Blockly.JavaScript['maze_forever'] = function(block) {
   }
   return 'while (notDone()) {\n' + branch + '}\n';
 };
+
+
+Blockly.Blocks['maze_repeat'] = {
+  /**
+   * Block for repeat loop.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setColour(Chip.Blocks.LOOPS_HUE);
+    this.appendDummyInput()
+        .appendField(BlocklyGames.getMsg('Maze_repeat'))
+        .appendField(new Blockly.FieldNumber(3), 'NTIMES')
+        .appendField(BlocklyGames.getMsg('Maze_nTimes'));
+    this.appendStatementInput('DO')
+        .appendField(BlocklyGames.getMsg('Maze_doCode'));
+    this.setPreviousStatement(true);
+    this.setTooltip(BlocklyGames.getMsg('Maze_whileTooltip'));
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+  }
+};
+
+Blockly.JavaScript['maze_repeat'] = function(block) {
+  // Generate JavaScript for repeat loop.
+  var branch = Blockly.JavaScript.statementToCode(block, 'DO');
+  if (Blockly.JavaScript.INFINITE_LOOP_TRAP) {
+    branch = Blockly.JavaScript.INFINITE_LOOP_TRAP.replace(/%1/g,
+        '\'block_id_' + block.id + '\'') + branch;
+  }
+   var argument = block.getFieldValue('NTIMES');
+  return 'for(var i = 0; i < ' + argument + ' ; i++) {\n' + branch + '}\n';
+};

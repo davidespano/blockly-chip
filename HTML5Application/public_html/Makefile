@@ -37,7 +37,11 @@ variables-it: common-it
 
 conditional-it: common-it
 	$(SOY_COMPILER) --outputPathFormat appengine/conditional/generated/it/soy.js --srcs appengine/conditional/template.soy
-	python build-app.py conditional it
+	python build-app.py loops it
+
+loops-it: loops-it
+	$(SOY_COMPILER) --outputPathFormat appengine/loops/generated/it/soy.js --srcs appengine/loops/template.soy
+	python build-app.py loops it
 
 bird-it: common-it
 	$(SOY_COMPILER) --outputPathFormat appengine/bird/generated/it/soy.js --srcs appengine/bird/template.soy
@@ -79,14 +83,18 @@ links:
 	rm appengine/variables/js/chip-blocks.js; \
 	rm appengine/conditional/js/chip.js; \
 	rm appengine/conditional/js/chip-blocks.js; \
+        rm appengine/loops/js/chip.js; \
+	rm appengine/loops/js/chip-blocks.js; \
 	ln appengine/chip/js/chip.js appengine/variables/js; \
 	ln appengine/chip/js/chip-blocks.js appengine/variables/js; \
 	ln appengine/chip/js/chip.js appengine/conditional/js; \
-	ln appengine/chip/js/chip-blocks.js appengine/conditional/js
+	ln appengine/chip/js/chip-blocks.js appengine/conditional/js; \
+        ln appengine/chip/js/chip.js appengine/loops/js; \
+	ln appengine/chip/js/chip-blocks.js appengine/loops/js
 
 #it: link index-it puzzle-it maze-it bird-it turtle-it movie-it pond-docs-it pond-tutor-it pond-duck-it genetics-it
 
-it: index-it chip-it puzzle-it maze-it variables-it conditional-it
+it: index-it chip-it puzzle-it maze-it variables-it conditional-it loops-it
 
 # [davide] fine modifiche
 languages:

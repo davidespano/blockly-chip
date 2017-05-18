@@ -32,8 +32,8 @@ goog.require('Index.soy');
 /**
  * Array of application names.
  */
-Index.APPS = ['Variables', 'conditional'];
-Index.MAX_LEVEL = [10, 20];
+Index.APPS = ['variables', 'conditional', 'loops'];
+Index.MAX_LEVEL = [10, 20, 10];
 
 
 /**
