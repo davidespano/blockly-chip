@@ -498,6 +498,18 @@ Blockly.JavaScript['maze_repeat'] = function(block) {
     branch = Blockly.JavaScript.INFINITE_LOOP_TRAP.replace(/%1/g,
         '\'block_id_' + block.id + '\'') + branch;
   }
+  
+  var i = 'i'.charCodeAt(0);
+  var cursor = block;
+  while (cursor.getSurroundParent() !== null){
+      i++;
+      cursor = cursor.getSurroundParent();
+  }
+  
+  var loopIndex = String.fromCharCode(i);
+  
+  
    var argument = block.getFieldValue('NTIMES');
-  return 'for(var i = 0; i < ' + argument + ' ; i++) {\n' + branch + '}\n';
+   return 'for(var ' + loopIndex + ' = 0; '+loopIndex+' < ' 
+           + argument + ' ; '+loopIndex+ '++) {\n' + branch + '}\n';
 };

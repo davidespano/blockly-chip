@@ -76,7 +76,7 @@
           {/call}
           {call BlocklyGames.soy.levelLinks}
             {param level: $ij.level /}
-            {param maxLevel: $ij.maxLevel /}
+            {param maxLevel: 14 /}
             {param lang: $ij.lang /}
             {param suffix}&skin={$ij.skin}&diff={$ij.diff}{/param}
           {/call}
@@ -167,7 +167,16 @@
       <table><tr><td>
         <img src="common/help.png">
       </td><td>&nbsp;</td><td>
-	Usa l'istruzione 'raccogli' per far raccogliere i rifiuti a Chip.
+	Usa l'istruzione 'ripeti' per evitare di usare blocchi inutili. 
+        {call BlocklyGames.soy.ok /}
+      </td></tr></table>
+    </div>
+  {elseif $ij.level == 2}
+     <div id="dialogInit" class="dialogHiddenContent">
+      <table><tr><td>
+        <img src="common/help.png">
+      </td><td>&nbsp;</td><td>
+        Suddividi il percorso in due parti per far ripetere le azioni a Chip
         {call BlocklyGames.soy.ok /}
       </td></tr></table>
     </div>
@@ -176,22 +185,11 @@
       <table><tr><td>
         <img src="common/help.png">
       </td><td>&nbsp;</td><td>
-	Usa l'istruzione 'Gira verso (destra o sinistra)' per far girare Chip su se stesso. <br/>
-        Usa l'istruzione 'Ripeti fino a <image height="16px" width="12px" xlink:href="variables/marker.png"></image>' per ripetere azioni e usare meno blocchi.
+        Individua la porzione di percorso che si ripete.
         {call BlocklyGames.soy.ok /}
       </td></tr></table>
     </div>
-    
-  {elseif $ij.level == 6}
-      <div id="dialogInit" class="dialogHiddenContent">
-      <table><tr><td>
-        <img src="common/help.png">
-      </td><td>&nbsp;</td><td>
-	Usa l'istruzione 'Se c'&egrave; strada a (Nord, Sud, Ovest, Est)' per verificare se ci sia la strada prima di camminare.
-        {call BlocklyGames.soy.ok /}
-      </td></tr></table>
-    </div>
-  {elseif $ij.level == 8}
+  {elseif $ij.level == 8 or $ij.level == 10 or $ij.level == 12 or $ij.level == 14}
       <div id="dialogInit" class="dialogHiddenContent">
       <table><tr><td>
         <img src="common/help.png">
@@ -201,16 +199,6 @@
       </td></tr></table>
     </div>
    
-  {elseif $ij.level == 10}
-    <div id="dialogInit" class="dialogHiddenContent">
-      <table><tr><td>
-        <img src="common/help.png">
-      </td><td>&nbsp;</td><td>
-	Questo livello &egrave; molto difficile e non puoi raccogliere tutta la spazzatura. <br/>
-        Suggerimento: ripeti le azioni provando prima a sinistra e poi a destra. 
-        {call BlocklyGames.soy.ok /}
-      </td></tr></table>
-    </div>
   {/if}
 {/template}
 
@@ -221,19 +209,7 @@
   <xml id="toolbox" style="display: none;">
     <block type="maze_moveForward"></block>
     <block type="variables_collect"></block>
-    <block type="maze_repeat"></block>
-    {if $ij.level < 9 and $ij.level != 4}
-    <block type="maze_turn"><field name="DIR">turnUp</field></block>
-    {else}
     <block type="maze_rotate"><field name="DIR">rotateLeft</field></block>
-    {/if}
-    {if $ij.level > 3}
-      {if $ij.level == 6 or $ij.level == 7 or $ij.level == 8}
-        <block type="maze_if"><field name="DIR">isPathUp</field></block>
-      {elseif $ij.level > 6}
-        <block type="maze_if_fwd"></block>
-      {/if}
-       <block type="maze_forever"></block>
-    {/if}
+    <block type="maze_repeat"></block>
   </xml>
 {/template}

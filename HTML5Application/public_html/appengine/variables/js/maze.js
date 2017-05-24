@@ -35,7 +35,7 @@ goog.require('Variables.soy');
 
 app = Variables;
 appId = 1;
-BlocklyGames.NAME = "Variables"
+BlocklyGames.NAME = "variables"
 
 // configure mazes for Variables lesson
 

@@ -33,8 +33,8 @@ goog.require('Chip.Blocks');
 
 BlocklyGames.NAME = 'variables';
 
-//Chip.ajaxUrl = "/appengine/server/logger.php";
-Chip.ajaxUrl = "/server/logger.php"
+Chip.ajaxUrl = "/appengine/server/logger.php";
+//Chip.ajaxUrl = "/server/logger.php"
 
 /**
  * Go to the next level.
