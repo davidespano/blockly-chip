@@ -469,6 +469,7 @@ Blockly.JavaScript['maze_forever'] = function(block) {
   }
   return 'while (notDone()) {\n' + branch + '}\n';
 };
+<<<<<<< OURS
 
 
 Blockly.Blocks['maze_repeat'] = {
@@ -513,3 +514,5 @@ Blockly.JavaScript['maze_repeat'] = function(block) {
    return 'for(var ' + loopIndex + ' = 0; '+loopIndex+' < ' 
            + argument + ' ; '+loopIndex+ '++) {\n' + branch + '}\n';
 };
+=======
+>>>>>>> THEIRS
